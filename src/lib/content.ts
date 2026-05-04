@@ -119,21 +119,20 @@ export const en: Translation = {
   locale: 'en',
   altPath: '/ko',
   altLabel: '한국어',
-  pageTitle: 'TARS — A local AI agent with a console worth opening',
+  pageTitle: 'TARS — A local AI agent that runs on your machine, under your control',
   metaDescription:
-    'TARS — a local AI agent with a console worth opening. A single Go binary that runs on your machine, with a full browser console for chat, sub-agents, memory review, scheduled jobs, and a watchdog.',
+    'TARS is a local AI agent runtime that runs as a single Go binary on your machine. From the browser console you can directly inspect and control its work — agent runs, memory, scheduled jobs, Git changes, execution history.',
 
   nav: { console: 'Console', features: 'Features', compare: 'Compare', quickstart: 'Quickstart', github: 'GitHub', star: 'Star' },
 
   hero: {
-    label: '// runtime + console, on your machine',
+    label: '// local AI agent runtime',
     headlineParts: [
       { text: 'A local AI agent —', nl: true },
-      { text: 'with a ' },
-      { text: 'console worth opening', highlight: true },
-      { text: '.' }
+      { text: 'runs on your machine,', nl: true },
+      { text: 'under your control', highlight: true }
     ],
-    sub: 'TARS runs as a single Go binary on your machine and opens a full browser console — chat with dockable Git Inspector, agent runtime flow graphs, message-level session forks, memory inbox review, scheduled jobs, and a background watchdog. Everything that matters has a UI.',
+    sub: 'TARS is a local AI agent runtime that runs as a single Go binary on your machine. From the browser console you can directly inspect and control its work — agent runs, memory, scheduled jobs, Git changes, execution history.',
     ctaPrimary: 'Get Started',
     ctaSecondary: 'View on GitHub',
     pills: ['Single binary', 'Local-first', 'Anthropic · OpenAI · Gemini · Claude Code CLI', 'MIT licensed']
@@ -141,18 +140,18 @@ export const en: Translation = {
 
   intro: {
     label: '// what is tars',
-    heading: 'Built to work beside\na human operator.',
+    heading: 'An AI agent\nthat works on your machine',
     paragraphs: [
-      'The name is an homage to TARS from <em>Interstellar</em> — practical, direct, built to work under pressure. TARS borrows that name as a north star for the kind of local agent runtime it wants to be.',
-      'Most agent frameworks live in the cloud, or ship as a thin CLI with maybe an HTTP API bolted on. TARS lives on your machine, owns its own memory, and treats the browser console as a first-class surface — not an afterthought. Every operating concern (chat, sub-agents, scheduling, memory review, approvals, analytics) has a real page.',
-      'Extension is intentionally lean: skills (Markdown + companion CLI) load only when invoked — not every chat turn. Plugins and MCP servers are gated, so the system prompt stays small and the agent stays focused.'
+      'The name comes from the TARS in <em>Interstellar</em> — practical, direct, dependable when things get complicated. TARS aims for that.',
+      "Not an agent running somewhere in the cloud you can't see, but a local AI agent that runs on your machine and can be inspected and controlled directly. Most AI agent tools are CLI-first, or add a thin web UI on top. TARS is designed around the browser console: chat, sub-agents, scheduled jobs, memory review, Git changes, run flow, and pending approvals each get their own page.",
+      "Since the agent works with your files and tools, you should be able to see what it's doing and step in when needed — that's the starting premise. Extensions stay lean: skills load only when invoked; plugins and MCP servers are used only when explicitly allowed. The system prompt stays small, and the agent stays focused on the current task."
     ]
   },
 
   console: {
-    label: '// inside the console',
-    heading: "The console isn't a viewer.\nIt's the cockpit.",
-    sub: 'Most local agent tools ship a CLI and call it done. TARS treats the browser console as a first-class surface — every page is a working tool, not a status read-out. Open <code class="font-mono text-[var(--color-amber-soft)]">127.0.0.1:43180/console</code> and these are some of the rooms you walk into:',
+    label: '// the console',
+    heading: 'Where you watch\nthe agent work',
+    sub: 'Many local agent tools end at a CLI. TARS uses the browser console as its main interface. Open <code class="font-mono text-[var(--color-amber-soft)]">127.0.0.1:43180/console</code> and you get screens that actually let you inspect and control the agent — not just status pages.',
     plus: 'Plus pages for Plans, System Prompt, Cron, Logs, Pulse, Reflection, and Settings — sidebar grouped under Home / Work / Operate / Setup.',
     pages: [
       {
@@ -160,112 +159,112 @@ export const en: Translation = {
         groupLabel: '/home',
         name: 'Mission Control',
         path: '/console',
-        body: 'Pulse, Reflection, plans, runtime runs, cron jobs, disk pressure, sessions, recommended setup actions — all on one screen.'
+        body: 'Pulse, Reflection, plans, runtime runs, cron jobs, disk pressure, sessions, recommended setup actions — all on one screen. See agent state and ongoing work at a glance.'
       },
       {
         group: 'Work',
         groupLabel: '/work',
         name: 'Chat',
         path: '/console/chat',
-        body: 'Dockable panels: Sessions, Tasks, Health, Git Inspector, Skill Inbox, Cron, Prior Context. Message-level session forks. First-turn tier recommendation.'
+        body: 'Dock the panels you need: Sessions, Tasks, Health, Git Inspector, Skill Inbox, Cron, Prior Context. Branch sessions at a specific message. First-turn tier recommendation for the model that fits.'
       },
       {
         group: 'Work',
         groupLabel: '/work',
         name: 'Lineage',
         path: '/console/sessions/graph',
-        body: 'Git-log–style tree of root and forked sessions. Fork point previews. Promote fork insights into Memory Inbox without mutating the parent.'
+        body: 'Conversation and work flow as a Git-log-style tree. Preview the message where each session branched. Promote insights from a branch into Memory Inbox without touching the parent.'
       },
       {
         group: 'Work',
         groupLabel: '/work',
         name: 'Memory',
         path: '/console/memory',
-        body: 'Review-before-store inbox for reflection candidates. Edit stored knowledge inline. Compare Tool path vs Prefetch path recall.'
+        body: 'Review what the agent wants to save as long-term memory before it is stored. Edit stored knowledge as Markdown. Compare Tool path vs Prefetch path recall.'
       },
       {
         group: 'Operate',
         groupLabel: '/operate',
         name: 'Agent Runtime',
         path: '/console/agentruntime',
-        body: 'List, tree, Gantt, and interactive Flow graph views. Replay scrubber, cost flow, file attention, git diff timeline, checkpoint restart.'
+        body: 'List, tree, Gantt, and interactive Flow graph views. Replay scrubber, cost flow, file attention, Git diff timeline, checkpoint restart.'
       },
       {
         group: 'Operate',
         groupLabel: '/operate',
         name: 'Approvals',
         path: '/console/approvals',
-        body: 'Risky cleanup plans and approved Git mutations gated before TARS applies them. Automation Audit log keeps every decision reviewable.'
+        body: 'Review risky cleanup plans and Git changes before they apply. Approve or reject pending work. The Automation Audit log keeps every decision reviewable.'
       },
       {
         group: 'Operate',
         groupLabel: '/operate',
         name: 'Analytics',
         path: '/console/analytics',
-        body: 'Usage totals, daily token bars, model cost rows, tool/skill call counts. UTC day-bounded daily budget chip in the header.'
+        body: 'Token use, cost per model, tool and skill call counts. Daily usage and cost flow. Daily budget chip in the header.'
       },
       {
         group: 'Work',
         groupLabel: '/work',
         name: 'Extensions',
         path: '/console/extensions',
-        body: 'Skill Creator and MCP Server Creator with sandbox tests. Hub installs surface trust signals (score, last update, passing tests, install count).'
+        body: 'Build and sandbox-test extensions with Skill Creator and MCP Server Creator. Hub installs surface trust signals: score, last update, passing tests, install count.'
       }
     ]
   },
 
   features: {
     label: '// runtime features',
-    heading: 'Behind the console,\na careful runtime.',
-    sub: 'TARS draws a hard line at what should be in the binary versus what should be a skill. The runtime stays small; the rest is opt-in.',
+    heading: 'Core stays small\nThe rest is opt-in',
+    sub: "TARS doesn't push every feature into the system prompt at once. The base runtime stays small; the rest goes into skills and plugins.",
     items: [
       {
         tag: 'agent_runtime',
         title: 'Sub-Agent Orchestration',
-        body: 'Spawn read-only agents for research and planning. Per-task tier routing, allowlist policy, depth control. Parallel and compare modes.'
+        body: 'Spawn read-only sub-agents for research and planning. Per-task model tier routing, allowlist policy, depth control. Parallel and compare modes.'
       },
       {
         tag: 'memory',
         title: 'Durable Memory',
-        body: 'Markdown memory with semantic search via Gemini embeddings. Daily logs, reviewed experiences, nightly reflection — all auditable on disk.'
+        body: 'Markdown memory with semantic search via Gemini embeddings. Daily logs, reviewed experiences, nightly Reflection — stored on disk and auditable. Review-before-store lets you decide what gets remembered.'
       },
       {
         tag: 'pulse',
         title: 'Pulse Watchdog',
-        body: 'Runs every minute. Catches cron failures, stuck runs, disk pressure, telegram errors — escalates to a narrow LLM decision call only when needed.'
+        body: 'A periodic loop that checks runtime health. Detects cron failures, stuck runs, disk pressure, Telegram errors. Calls a narrow LLM only when needed.'
       },
       {
         tag: 'reflection',
         title: 'Nightly Reflection',
-        body: 'Between 02:00–05:00 TARS extracts experiences from sessions, prunes empty ones, and grows the memory store. Deterministic Go, no LLM tool surface.'
+        body: 'Extracts experiences and memory candidates from sessions overnight. Cleans up empty sessions, refreshes memory candidates. Runs as deterministic Go without exposing LLM tools.'
       },
       {
         tag: 'cron',
         title: 'Scheduled Jobs',
-        body: 'Tick-based scheduler at 30s resolution. Cron expressions plus @at one-time triggers. Per-job audit history, capped to keep state lean.'
+        body: '30-second tick scheduler. Cron expressions and @at one-time triggers. Per-job audit history with state caps.'
       },
       {
         tag: 'llm_router',
         title: '3-Tier LLM Router',
-        body: 'Heavy / standard / light tiers map to provider+model bundles. Roles bind to tiers, credentials live at provider level, env-var JSON overrides.'
+        body: 'Three tiers — Heavy, Standard, Light. Roles bind to tiers; providers and models are managed in config. Pick lighter or stronger models depending on what the work needs.'
       },
       {
         tag: 'extensions',
         title: 'Skills, Plugins, MCP',
-        body: 'Skills are Markdown + companion CLI — only loaded when invoked, so the system prompt stays small. Plugins gated; MCP fully supported as a client.'
+        body: 'Skills are Markdown plus a runnable CLI — loaded only when invoked, so the system prompt stays small. Plugins are gated; MCP is supported as a client.'
       },
       {
         tag: 'channels',
         title: 'Multi-Channel I/O',
-        body: 'Beyond the console: Telegram bidirectional messaging, inbound webhooks, macOS Assistant popup, and a local API for scripts.'
+        body: 'Beyond the browser console: Telegram bidirectional messaging, inbound webhooks, macOS Assistant popup, and a local API for scripts.'
       }
     ]
   },
 
   comparison: {
     label: '// vs others',
-    heading: 'How TARS differs.',
-    sub: 'Two excellent local agent projects in this space — <a href="https://openclaw.ai" target="_blank" rel="noopener" class="underline hover:text-[var(--color-text-primary)]">OpenClaw</a> and <a href="https://hermes-agent.nousresearch.com" target="_blank" rel="noopener" class="underline hover:text-[var(--color-text-primary)]">Hermes Agent</a>. Each has its own focus. Here\'s where TARS draws different lines.',
+    heading: 'Where TARS draws different lines',
+    sub: 'Two strong projects already exist in this space — <a href="https://openclaw.ai" target="_blank" rel="noopener" class="underline hover:text-[var(--color-text-primary)]">OpenClaw</a> and <a href="https://hermes-agent.nousresearch.com" target="_blank" rel="noopener" class="underline hover:text-[var(--color-text-primary)]">Hermes Agent</a>. Each has its own focus. Here are the points TARS treats as important.',
     headers: { dimension: 'Dimension', openclaw: 'OpenClaw', hermes: 'Hermes Agent', tars: 'TARS' },
     rows: sharedComparison([
       { dimension: 'Language', openclaw: 'TypeScript', hermes: 'Python', tars: 'Go (single binary)' },
@@ -302,14 +301,14 @@ export const en: Translation = {
 
   architecture: {
     label: '// architecture',
-    heading: 'One binary,\ntwo registries.',
-    body: 'TARS isolates the chat tool surface from system internals. The user-facing registry can never call <code class="font-mono text-[var(--color-amber-soft)]">ops_</code>, <code class="font-mono text-[var(--color-amber-soft)]">pulse_</code>, or <code class="font-mono text-[var(--color-amber-soft)]">reflection_</code> tools — those are reserved for the runtime itself. Pulse uses narrow Go interfaces and only one LLM call. Reflection is fully deterministic.'
+    heading: 'One binary,\nseparated tool surfaces',
+    body: "TARS runs as a single binary, but doesn't expose every tool the same way. The tools available in chat are kept separate from the tools used inside the runtime. The <code class=\"font-mono text-[var(--color-amber-soft)]\">ops_</code>, <code class=\"font-mono text-[var(--color-amber-soft)]\">pulse_</code>, and <code class=\"font-mono text-[var(--color-amber-soft)]\">reflection_</code> families can't be called directly from regular chat — they are reserved for runtime-internal operations. Pulse uses a narrow Go interface and only calls the LLM when needed; Reflection is deterministic."
   },
 
   quickstart: {
     label: '// quickstart',
-    heading: 'Three steps to a running agent.',
-    sub: 'On first launch, the wizard walks you through provider and tier configuration. The console boots in setup-only mode until an LLM is configured.',
+    heading: 'Get started in three steps',
+    sub: 'On first run, the setup wizard walks you through LLM provider and model tier configuration. Until an LLM is configured, the console runs in setup-only mode.',
     installLabel: 'Install',
     methods: [
       {
@@ -354,7 +353,7 @@ export const en: Translation = {
   },
 
   footer: {
-    tagline: 'A self-hosted AI agent runtime. Practical, direct, built to work beside a human operator.',
+    tagline: 'A local AI agent runtime that runs on your machine and stays under your control. Practical and transparent, built so the user can see and control the agent\'s work directly.',
     cols: { project: 'Project', extend: 'Extend', operator: 'Operator' },
     links: {
       project: [
@@ -391,7 +390,7 @@ export const ko: Translation = {
       { text: '내 컴퓨터에서 실행되고,', nl: true },
       { text: '내가 ' },
       { text: '직접 다룰 수 있는', highlight: true, nl: true },
-      { text: '로컬 AI 에이전트.' }
+      { text: '로컬 AI 에이전트' }
     ],
     sub: 'TARS는 Go 기반 단일 바이너리로 실행되는 로컬 AI 에이전트 런타임입니다. 브라우저 콘솔에서 에이전트의 작업 흐름, 메모리, 스케줄 작업, Git 변경사항, 실행 기록을 직접 확인하고 제어할 수 있습니다.',
     ctaPrimary: '시작하기',
@@ -401,7 +400,7 @@ export const ko: Translation = {
 
   intro: {
     label: '// TARS란',
-    heading: '내 컴퓨터에서 함께 일하는\nAI 에이전트.',
+    heading: '내 컴퓨터에서 함께 일하는\nAI 에이전트',
     paragraphs: [
       'TARS라는 이름은 영화 <em>인터스텔라</em>의 TARS에서 따왔습니다. 실용적이고 직설적이며, 복잡한 상황에서도 제 역할을 해내는 존재죠. TARS는 그런 방향을 지향합니다.',
       '클라우드 어딘가에서 돌아가는 알 수 없는 에이전트가 아니라, 내 컴퓨터에서 실행되고 내가 직접 보고 다룰 수 있는 로컬 AI 에이전트입니다. 대부분의 AI 에이전트 도구는 CLI 중심이거나 얇은 웹 UI를 덧붙인 형태인 반면, TARS는 브라우저 콘솔을 중심으로 설계되어 있습니다. 채팅, 서브에이전트, 스케줄 작업, 메모리 검토, Git 변경사항, 실행 흐름, 승인 대기 작업이 각각의 화면으로 분리되어 있습니다.',
@@ -411,7 +410,7 @@ export const ko: Translation = {
 
   console: {
     label: '// 콘솔',
-    heading: '에이전트가 일하는 과정을\n직접 확인하는 공간.',
+    heading: '에이전트가 일하는 과정을\n직접 확인하는 공간',
     sub: '많은 로컬 에이전트 도구는 CLI 하나로 끝납니다. TARS는 브라우저 콘솔을 중심 인터페이스로 사용합니다. <code class="font-mono text-[var(--color-amber-soft)]">127.0.0.1:43180/console</code>을 열면, 단순한 상태 페이지가 아니라 실제로 에이전트를 확인하고 제어할 수 있는 화면을 만나게 됩니다.',
     plus: '이 외에도 Plans, System Prompt, Cron, Logs, Pulse, Reflection, Settings 화면이 있고, 사이드바는 Home / Work / Operate / Setup으로 그룹화됩니다.',
     pages: [
@@ -476,7 +475,7 @@ export const ko: Translation = {
 
   features: {
     label: '// 런타임 기능',
-    heading: '핵심은 작게,\n필요한 기능은 선택적으로.',
+    heading: '핵심은 작게,\n필요한 기능은 선택적으로',
     sub: 'TARS는 모든 기능을 한꺼번에 시스템 프롬프트에 밀어 넣지 않습니다. 기본 런타임은 작게 유지하고, 나머지는 스킬과 플러그인으로 분리합니다.',
     items: [
       {
@@ -524,7 +523,7 @@ export const ko: Translation = {
 
   comparison: {
     label: '// 다른 도구와의 차이',
-    heading: 'TARS는 어떤 지점을 다르게 보는가.',
+    heading: 'TARS는 어떤 지점을 다르게 보는가',
     sub: '이 영역에는 이미 좋은 다른 두 프로젝트 — <a href="https://openclaw.ai" target="_blank" rel="noopener" class="underline hover:text-[var(--color-text-primary)]">OpenClaw</a>와 <a href="https://hermes-agent.nousresearch.com" target="_blank" rel="noopener" class="underline hover:text-[var(--color-text-primary)]">Hermes Agent</a>가 있습니다. 각자 초점이 있고, TARS는 다음 지점을 특히 중요하게 봅니다.',
     headers: { dimension: '항목', openclaw: 'OpenClaw', hermes: 'Hermes Agent', tars: 'TARS' },
     rows: sharedComparison([
@@ -562,13 +561,13 @@ export const ko: Translation = {
 
   architecture: {
     label: '// 아키텍처',
-    heading: '하나의 바이너리,\n분리된 도구 표면.',
+    heading: '하나의 바이너리,\n분리된 도구 표면',
     body: 'TARS는 하나의 바이너리 안에서 실행되지만, 모든 도구를 같은 방식으로 노출하지 않습니다. 채팅에서 사용하는 도구와 런타임 내부 도구를 분리합니다. <code class="font-mono text-[var(--color-amber-soft)]">ops_</code>, <code class="font-mono text-[var(--color-amber-soft)]">pulse_</code>, <code class="font-mono text-[var(--color-amber-soft)]">reflection_</code> 계열은 일반 채팅에서 직접 호출할 수 없으며, 런타임 내부 동작용으로 예약되어 있습니다. Pulse는 제한된 Go 인터페이스만 사용하며 LLM은 필요할 때만 호출, Reflection은 결정론적으로 동작합니다.'
   },
 
   quickstart: {
     label: '// 빠른 시작',
-    heading: '세 단계로 시작하기.',
+    heading: '세 단계로 시작하기',
     sub: '처음 실행하면 설정 마법사가 LLM 프로바이더와 모델 티어 구성을 안내합니다. LLM 설정이 완료되기 전까지 콘솔은 설정 전용 모드로 실행됩니다.',
     installLabel: '설치',
     methods: [
