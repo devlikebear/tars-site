@@ -60,6 +60,7 @@
     font-weight: 500;
     line-height: 1.2;
     letter-spacing: -0.01em;
+    word-break: keep-all;
   }
 
   code, .mono {

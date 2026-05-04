@@ -11,10 +11,7 @@
   <div class="container-tars py-24 md:py-32">
     <div class="max-w-3xl">
       <span class="label-mono mb-6 inline-block">{t.hero.label}</span>
-      <h1 class="text-4xl md:text-6xl font-display font-semibold leading-tight tracking-tight mb-6">
-        {t.hero.headlineA}<br/>
-        {t.hero.headlinePre}<span class="text-[var(--color-amber-soft)]">{t.hero.headlineHighlight}</span>{t.hero.headlineB}
-      </h1>
+      <h1 class="text-4xl md:text-6xl font-display font-semibold leading-tight tracking-tight mb-6">{#each t.hero.headlineParts as part}{#if part.highlight}<span class="text-[var(--color-amber-soft)]">{part.text}</span>{:else}{part.text}{/if}{#if part.nl}<br/>{/if}{/each}</h1>
       <p class="text-lg md:text-xl text-[var(--color-text-secondary)] leading-relaxed mb-10 max-w-2xl">
         {t.hero.sub}
       </p>
