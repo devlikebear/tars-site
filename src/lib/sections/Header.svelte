@@ -1,8 +1,9 @@
 <script lang="ts">
   const navItems = [
+    { label: 'Console', href: '#console' },
     { label: 'Features', href: '#features' },
-    { label: 'Quickstart', href: '#quickstart' },
-    { label: 'Architecture', href: '#architecture' }
+    { label: 'Compare', href: '#comparison' },
+    { label: 'Quickstart', href: '#quickstart' }
   ];
 </script>
 

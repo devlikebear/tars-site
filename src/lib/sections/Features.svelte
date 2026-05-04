@@ -5,12 +5,12 @@
     {
       tag: 'agent_runtime',
       title: 'Sub-Agent Orchestration',
-      body: 'Spawn read-only agents for research, planning, and specialized tasks. Per-task tier routing, allowlist policy, depth control, max 4 in flight.'
+      body: 'Spawn read-only agents for research and planning. Per-task tier routing, allowlist policy, depth control. Parallel and compare modes.'
     },
     {
       tag: 'memory',
       title: 'Durable Memory',
-      body: 'File-backed Markdown memory with semantic search via Gemini embeddings. Daily logs, reviewed experiences, nightly reflection — all auditable on disk.'
+      body: 'Markdown memory with semantic search via Gemini embeddings. Daily logs, reviewed experiences, nightly reflection — all auditable on disk.'
     },
     {
       tag: 'pulse',
@@ -30,17 +30,17 @@
     {
       tag: 'llm_router',
       title: '3-Tier LLM Router',
-      body: 'Heavy / standard / light tiers map to provider+model bundles. Roles bind to tiers, credentials live at provider level, env-var JSON overrides built in.'
+      body: 'Heavy / standard / light tiers map to provider+model bundles. Roles bind to tiers, credentials live at provider level, env-var JSON overrides.'
     },
     {
-      tag: 'skills',
+      tag: 'extensions',
       title: 'Skills, Plugins, MCP',
       body: 'Skills are Markdown + companion CLI — only loaded when invoked, so the system prompt stays small. Plugins gated; MCP fully supported as a client.'
     },
     {
-      tag: 'console',
-      title: 'Built-in Console',
-      body: 'Svelte 5 SPA at 127.0.0.1:43180. Multi-session chat, message-level forks, file mentions, dock-managed panels, session health, memory inbox review.'
+      tag: 'channels',
+      title: 'Multi-Channel I/O',
+      body: 'Beyond the console: Telegram bidirectional messaging, inbound webhooks, macOS Assistant popup, and a local API for scripts.'
     }
   ];
 </script>
@@ -48,9 +48,9 @@
 <section id="features" class="border-b border-[var(--color-border-subtle)]">
   <div class="container-tars py-20 md:py-28">
     <div class="mb-14 max-w-2xl">
-      <span class="label-mono mb-3 inline-block">// features</span>
+      <span class="label-mono mb-3 inline-block">// runtime features</span>
       <h2 class="text-3xl md:text-4xl font-display font-semibold tracking-tight mb-4">
-        Everything an operator needs,<br/>nothing more.
+        Behind the console,<br/>a careful runtime.
       </h2>
       <p class="text-[var(--color-text-secondary)] leading-relaxed">
         TARS draws a hard line at what should be in the binary versus what should be a skill. The runtime stays small; the rest is opt-in.

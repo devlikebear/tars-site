@@ -5,14 +5,13 @@
 
   <div class="container-tars py-24 md:py-32">
     <div class="max-w-3xl">
-      <span class="label-mono mb-6 inline-block">// self-hosted ai agent runtime</span>
+      <span class="label-mono mb-6 inline-block">// runtime + console, on your machine</span>
       <h1 class="text-4xl md:text-6xl font-display font-semibold leading-tight tracking-tight mb-6">
-        A practical agent that<br/>
-        <span class="text-[var(--color-amber-soft)]">works beside you</span>,<br/>
-        not in the cloud.
+        A local AI agent —<br/>
+        with a <span class="text-[var(--color-amber-soft)]">console worth opening</span>.
       </h1>
       <p class="text-lg md:text-xl text-[var(--color-text-secondary)] leading-relaxed mb-10 max-w-2xl">
-        TARS is a single Go binary that runs on your machine. Durable memory, parallel sub-agents, scheduled jobs, a watchdog, nightly reflection — all configurable via YAML and accessed through a built-in browser console.
+        TARS runs as a single Go binary on your machine and opens a full browser console — chat with dockable Git Inspector, agent runtime flow graphs, message-level session forks, memory inbox review, scheduled jobs, and a background watchdog. Everything that matters has a UI.
       </p>
       <div class="flex flex-wrap gap-3">
         <a href="#quickstart" class="btn-primary">Get Started</a>
@@ -33,7 +32,7 @@
         </span>
         <span class="inline-flex items-center gap-2">
           <span class="w-2 h-2 rounded-full bg-[var(--color-success)]"></span>
-          Multi-provider LLM (Anthropic, OpenAI, Gemini)
+          Anthropic · OpenAI · Gemini · Claude Code CLI
         </span>
         <span class="inline-flex items-center gap-2">
           <span class="w-2 h-2 rounded-full bg-[var(--color-success)]"></span>
