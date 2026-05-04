@@ -1,4 +1,7 @@
 <script lang="ts">
+  import type { Translation } from '$lib/content';
+  let { t }: { t: Translation } = $props();
+
   const year = new Date().getFullYear();
 </script>
 
@@ -10,44 +13,40 @@
           <span class="inline-flex w-7 h-7 items-center justify-center rounded-md bg-[var(--color-amber)]/15 text-[var(--color-amber-soft)] font-mono">T</span>
           <span class="font-display text-lg font-semibold">TARS</span>
         </div>
-        <p class="text-sm text-[var(--color-text-secondary)] max-w-md leading-relaxed">
-          A self-hosted AI agent runtime. Practical, direct, built to work beside a human operator.
-        </p>
+        <p class="text-sm text-[var(--color-text-secondary)] max-w-md leading-relaxed">{t.footer.tagline}</p>
       </div>
 
       <div class="md:col-span-2">
-        <div class="label-mono mb-3">Project</div>
+        <div class="label-mono mb-3">{t.footer.cols.project}</div>
         <ul class="space-y-2 text-sm">
-          <li><a href="https://github.com/devlikebear/tars" target="_blank" rel="noopener" class="text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]">GitHub</a></li>
-          <li><a href="https://github.com/devlikebear/tars/issues" target="_blank" rel="noopener" class="text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]">Issues</a></li>
-          <li><a href="https://github.com/devlikebear/tars/releases" target="_blank" rel="noopener" class="text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]">Releases</a></li>
+          {#each t.footer.links.project as link}
+            <li><a href={link.href} target="_blank" rel="noopener" class="text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]">{link.label}</a></li>
+          {/each}
         </ul>
       </div>
 
       <div class="md:col-span-2">
-        <div class="label-mono mb-3">Extend</div>
+        <div class="label-mono mb-3">{t.footer.cols.extend}</div>
         <ul class="space-y-2 text-sm">
-          <li><a href="https://github.com/devlikebear/tars-skills" target="_blank" rel="noopener" class="text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]">Skills</a></li>
-          <li><a href="https://github.com/devlikebear/tars#mcp-servers" target="_blank" rel="noopener" class="text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]">MCP servers</a></li>
+          {#each t.footer.links.extend as link}
+            <li><a href={link.href} target="_blank" rel="noopener" class="text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]">{link.label}</a></li>
+          {/each}
         </ul>
       </div>
 
       <div class="md:col-span-3">
-        <div class="label-mono mb-3">Operator</div>
+        <div class="label-mono mb-3">{t.footer.cols.operator}</div>
         <ul class="space-y-2 text-sm">
-          <li><a href="https://marvin-42.com" target="_blank" rel="noopener" class="text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]">marvin-42.com</a></li>
-          <li><a href="https://insights.marvin-42.com" target="_blank" rel="noopener" class="text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]">insights.marvin-42.com</a></li>
+          {#each t.footer.links.operator as link}
+            <li><a href={link.href} target="_blank" rel="noopener" class="text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]">{link.label}</a></li>
+          {/each}
         </ul>
       </div>
     </div>
 
     <div class="mt-12 pt-6 border-t border-[var(--color-border-subtle)] flex flex-wrap gap-4 items-center justify-between">
-      <p class="text-xs text-[var(--color-text-tertiary)]">
-        © {year} TARS · MIT License · An homage to TARS from <em>Interstellar</em>; not affiliated with the film.
-      </p>
-      <p class="text-xs text-[var(--color-text-tertiary)] font-mono">
-        tars.marvin-42.com
-      </p>
+      <p class="text-xs text-[var(--color-text-tertiary)]">© {year} TARS · {@html t.footer.legal}</p>
+      <p class="text-xs text-[var(--color-text-tertiary)] font-mono">tars.marvin-42.com</p>
     </div>
   </div>
 </footer>
