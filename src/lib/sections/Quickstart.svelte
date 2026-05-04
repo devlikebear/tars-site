@@ -1,19 +1,45 @@
 <script lang="ts">
-  const steps = [
+  type InstallMethod = {
+    id: string;
+    label: string;
+    note: string;
+    code: string;
+  };
+
+  const methods: InstallMethod[] = [
     {
-      label: '01',
-      title: 'Clone & build',
-      code: 'git clone https://github.com/devlikebear/tars.git\ncd tars\nmake build'
+      id: 'brew',
+      label: 'Homebrew',
+      note: 'macOS / Linux — pre-built binary with console',
+      code: 'brew tap devlikebear/tap\nbrew install devlikebear/tap/tars'
     },
+    {
+      id: 'curl',
+      label: 'curl',
+      note: 'Linux / macOS one-liner — pre-built binary with console',
+      code: 'curl -fsSL https://raw.githubusercontent.com/devlikebear/tars/main/install.sh | sh'
+    },
+    {
+      id: 'source',
+      label: 'From source',
+      note: 'For development. Requires Go 1.25+ and Node 20+',
+      code: 'git clone https://github.com/devlikebear/tars.git\ncd tars\nmake build'
+    }
+  ];
+
+  let activeId = $state<string>('brew');
+  const active = $derived(methods.find((m) => m.id === activeId) ?? methods[0]);
+
+  const runSteps = [
     {
       label: '02',
       title: 'Initialize workspace',
-      code: './bin/tars init'
+      code: 'tars init'
     },
     {
       label: '03',
       title: 'Start the server',
-      code: './bin/tars serve\n# console at http://127.0.0.1:43180/console'
+      code: 'tars serve\n# console at http://127.0.0.1:43180/console'
     }
   ];
 </script>
@@ -23,15 +49,39 @@
     <div class="mb-12 max-w-2xl">
       <span class="label-mono mb-3 inline-block">// quickstart</span>
       <h2 class="text-3xl md:text-4xl font-display font-semibold tracking-tight mb-4">
-        Three commands to a running agent.
+        Three steps to a running agent.
       </h2>
       <p class="text-[var(--color-text-secondary)] leading-relaxed">
-        Requires Go 1.22+ and Node 20+ (for the console build). On first launch, the wizard walks you through provider and tier configuration.
+        On first launch, the wizard walks you through provider and tier configuration. The console boots in setup-only mode until an LLM is configured.
       </p>
     </div>
 
-    <div class="grid md:grid-cols-3 gap-4">
-      {#each steps as step}
+    <div class="card flex flex-col gap-4 mb-4">
+      <div class="flex items-center gap-3 flex-wrap">
+        <span class="font-mono text-xs text-[var(--color-amber-soft)]">01</span>
+        <h3 class="font-display text-base font-semibold">Install</h3>
+        <div class="ml-auto flex flex-wrap gap-1 p-1 bg-[var(--color-surface-inset)] rounded-md border border-[var(--color-border-subtle)]">
+          {#each methods as method}
+            <button
+              type="button"
+              class={`px-3 py-1 rounded text-xs font-display font-medium transition-colors ${
+                activeId === method.id
+                  ? 'bg-[var(--color-surface-elevated)] text-[var(--color-text-primary)]'
+                  : 'text-[var(--color-text-tertiary)] hover:text-[var(--color-text-secondary)]'
+              }`}
+              onclick={() => (activeId = method.id)}
+            >
+              {method.label}
+            </button>
+          {/each}
+        </div>
+      </div>
+      <p class="text-sm text-[var(--color-text-secondary)]">{active.note}</p>
+      <pre class="font-mono text-xs text-[var(--color-text-primary)] bg-[var(--color-surface-inset)] border border-[var(--color-border-subtle)] rounded-md p-3 overflow-x-auto leading-relaxed">{active.code}</pre>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-4">
+      {#each runSteps as step}
         <div class="card flex flex-col gap-3">
           <div class="flex items-center gap-3">
             <span class="font-mono text-xs text-[var(--color-amber-soft)]">{step.label}</span>
