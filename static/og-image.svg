@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="0%" r="60%">
+      <stop offset="0%" stop-color="#e09145" stop-opacity="0.28"/>
+      <stop offset="60%" stop-color="#e09145" stop-opacity="0.04"/>
+      <stop offset="100%" stop-color="#e09145" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="border" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#333333"/>
+      <stop offset="100%" stop-color="#1c1c1c"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="#141414"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+
+  <!-- subtle grid -->
+  <g stroke="#1c1c1c" stroke-width="1" opacity="0.6">
+    <line x1="0" y1="120" x2="1200" y2="120"/>
+    <line x1="0" y1="510" x2="1200" y2="510"/>
+  </g>
+
+  <!-- top label -->
+  <g transform="translate(80, 90)">
+    <rect x="0" y="0" width="10" height="10" fill="#e09145"/>
+    <text x="22" y="10" font-family="JetBrains Mono, ui-monospace, monospace" font-size="14" font-weight="500" fill="#e09145" letter-spacing="2">LOCAL AI AGENT &#183; SINGLE GO BINARY</text>
+  </g>
+
+  <!-- main wordmark -->
+  <text x="80" y="280" font-family="Outfit, system-ui, sans-serif" font-size="96" font-weight="700" fill="#e8e4df" letter-spacing="-2">TARS</text>
+
+  <!-- tagline -->
+  <text x="80" y="380" font-family="Outfit, system-ui, sans-serif" font-size="48" font-weight="600" fill="#e8e4df" letter-spacing="-1">A local AI agent with a</text>
+  <text x="80" y="438" font-family="Outfit, system-ui, sans-serif" font-size="48" font-weight="600" fill="#f0b878" letter-spacing="-1">console worth opening.</text>
+
+  <!-- sub description -->
+  <text x="80" y="500" font-family="DM Sans, system-ui, sans-serif" font-size="22" font-weight="400" fill="#9a9590">Chat &#183; Git Inspector &#183; Agent flow graphs &#183; Memory inbox &#183; Scheduler</text>
+
+  <!-- bottom row -->
+  <g transform="translate(80, 565)">
+    <circle cx="6" cy="6" r="6" fill="#4ade80"/>
+    <text x="22" y="12" font-family="JetBrains Mono, ui-monospace, monospace" font-size="16" font-weight="500" fill="#9a9590">tars.marvin-42.com</text>
+  </g>
+
+  <!-- right side mono detail -->
+  <g transform="translate(900, 90)" font-family="JetBrains Mono, ui-monospace, monospace" font-size="13" fill="#6b6560">
+    <text x="0" y="0">$ tars start</text>
+    <text x="0" y="22" fill="#9a9590">&#187; console: http://localhost:7777</text>
+    <text x="0" y="44" fill="#9a9590">&#187; agent ready</text>
+  </g>
+
+  <!-- accent corner -->
+  <g transform="translate(1040, 480)" stroke="#e09145" stroke-width="2" fill="none" opacity="0.7">
+    <path d="M 0 60 L 0 0 L 60 0"/>
+    <path d="M 80 60 L 80 0 L 140 0" opacity="0.5"/>
+  </g>
+
+  <!-- frame -->
+  <rect x="0.5" y="0.5" width="1199" height="629" fill="none" stroke="url(#border)" stroke-width="1"/>
+</svg>
