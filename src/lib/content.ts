@@ -208,7 +208,7 @@ export const en: Translation = {
         groupLabel: '/work',
         name: 'Extensions',
         path: '/console/extensions',
-        body: 'Build and sandbox-test extensions with Skill Creator and MCP Server Creator. Hub installs surface trust signals: score, last update, passing tests, install count.'
+        body: 'Build and sandbox-test extensions with Skill Creator and MCP Server Creator. Hub installs surface trust signals: score, last update, passing tests, install count. A hub-source dropdown federates the catalog across tars-hub, openclaw, hermes, and Anthropic skills, and external installs open a dry-run modal showing the converted frontmatter, per-file sha256, adapter warnings, and ATTRIBUTION notice before any file is written.'
       }
     ]
   },
@@ -251,7 +251,7 @@ export const en: Translation = {
       {
         tag: 'extensions',
         title: 'Skills, Plugins, MCP',
-        body: 'Skills are Markdown plus a runnable CLI — loaded only when invoked, so the system prompt stays small. Plugins are gated; MCP is supported as a client.'
+        body: 'Skills are Markdown plus a runnable CLI — loaded only when invoked, so the system prompt stays small. Plugins are gated; MCP is supported as a client. Skill installs federate across tars-hub plus external MIT-compatible hubs (openclaw, hermes, Anthropic skills): every external install previews first, generates an ATTRIBUTION.md from the upstream license, and blocks source-available content.'
       },
       {
         tag: 'channels',
@@ -468,7 +468,7 @@ export const ko: Translation = {
         groupLabel: '/work',
         name: 'Extensions',
         path: '/console/extensions',
-        body: 'Skill Creator와 MCP Server Creator로 확장을 만들고 샌드박스 테스트. 허브 설치 시 점수, 마지막 업데이트, 테스트 통과 여부, 설치 수가 함께 표시됩니다.'
+        body: 'Skill Creator와 MCP Server Creator로 확장을 만들고 샌드박스 테스트. 허브 설치 시 점수, 마지막 업데이트, 테스트 통과 여부, 설치 수가 함께 표시됩니다. 허브 출처 드롭다운으로 tars-hub·openclaw·hermes·Anthropic skills를 한곳에서 검색하고, 외부 허브 설치는 변환된 frontmatter, 파일별 sha256, 어댑터 경고, ATTRIBUTION 안내를 보여주는 dry-run 모달을 거친 뒤에야 파일이 기록됩니다.'
       }
     ]
   },
@@ -511,7 +511,7 @@ export const ko: Translation = {
       {
         tag: 'extensions',
         title: 'Skills, Plugins, MCP',
-        body: '스킬은 Markdown 설명과 실행 가능한 CLI로 구성. 호출될 때만 로드되어 시스템 프롬프트가 작게 유지됩니다. Plugins은 명시적으로 허용된 경우에만 사용, MCP는 클라이언트로 지원.'
+        body: '스킬은 Markdown 설명과 실행 가능한 CLI로 구성. 호출될 때만 로드되어 시스템 프롬프트가 작게 유지됩니다. Plugins은 명시적으로 허용된 경우에만 사용, MCP는 클라이언트로 지원. 스킬 설치는 tars-hub와 외부 MIT 호환 허브(openclaw, hermes, Anthropic skills)를 모두 아울러 페더레이션됩니다. 외부 허브 설치는 반드시 미리보기를 거치고 원본 라이선스 본문이 담긴 ATTRIBUTION.md를 자동 생성하며, 재배포 불가 콘텐츠는 차단합니다.'
       },
       {
         tag: 'channels',
