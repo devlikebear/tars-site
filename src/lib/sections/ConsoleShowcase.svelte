@@ -32,5 +32,28 @@
     </div>
 
     <div class="mt-10 text-sm text-[var(--color-text-tertiary)]">{t.console.plus}</div>
+
+    <div class="mt-12 card flex flex-col gap-4 md:flex-row md:items-start md:gap-6">
+      <div class="md:flex-1">
+        <span class="label-mono mb-2 inline-block">{t.console.pwa.label}</span>
+        <h3 class="font-display text-xl font-semibold mb-2">{t.console.pwa.title}</h3>
+        <p class="text-sm text-[var(--color-text-secondary)] leading-relaxed">{t.console.pwa.body}</p>
+      </div>
+      <div class="md:flex-1 flex flex-col gap-2">
+        <ul class="text-sm text-[var(--color-text-secondary)] leading-relaxed list-disc pl-5 space-y-1">
+          {#each t.console.pwa.bullets as bullet}
+            <li>{bullet}</li>
+          {/each}
+        </ul>
+        <a
+          href={t.console.pwa.cta.href}
+          target="_blank"
+          rel="noopener"
+          class="btn-secondary self-start mt-2"
+        >
+          {t.console.pwa.cta.label}
+        </a>
+      </div>
+    </div>
   </div>
 </section>

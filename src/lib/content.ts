@@ -61,6 +61,13 @@ export type Translation = {
     sub: string;
     plus: string;
     pages: ConsolePage[];
+    pwa: {
+      label: string;
+      title: string;
+      body: string;
+      bullets: string[];
+      cta: { label: string; href: string };
+    };
   };
 
   features: {
@@ -210,7 +217,19 @@ export const en: Translation = {
         path: '/console/extensions',
         body: 'Build and sandbox-test extensions with Skill Creator and MCP Server Creator. Hub installs surface trust signals: score, last update, passing tests, install count. A hub-source dropdown federates the catalog across tars-hub, openclaw, hermes, and Anthropic skills, and external installs open a dry-run modal showing the converted frontmatter, per-file sha256, adapter warnings, and ATTRIBUTION notice before any file is written.'
       }
-    ]
+    ],
+    pwa: {
+      label: '// install as an app',
+      title: 'Run the console as a desktop app',
+      body: 'The browser console ships as an installable PWA. Add it to your Dock, taskbar, or launcher and open it in its own window — same surface as the browser, with deep-link shortcuts and an at-a-glance status pill in the topbar.',
+      bullets: [
+        'Chrome / Edge / Brave / Arc: address bar install button',
+        'Safari 14+: File → Add to Dock',
+        'Right-click the Dock icon: Chat / Sessions / Ops / Pulse / Reflection shortcuts',
+        'Topbar status pill: server · pulse · reflection · active sessions in one glance'
+      ],
+      cta: { label: 'Install guide →', href: 'https://github.com/devlikebear/tars/blob/main/docs/console-install.md' }
+    }
   },
 
   features: {
@@ -470,7 +489,19 @@ export const ko: Translation = {
         path: '/console/extensions',
         body: 'Skill Creator와 MCP Server Creator로 확장을 만들고 샌드박스 테스트. 허브 설치 시 점수, 마지막 업데이트, 테스트 통과 여부, 설치 수가 함께 표시됩니다. 허브 출처 드롭다운으로 tars-hub·openclaw·hermes·Anthropic skills를 한곳에서 검색하고, 외부 허브 설치는 변환된 frontmatter, 파일별 sha256, 어댑터 경고, ATTRIBUTION 안내를 보여주는 dry-run 모달을 거친 뒤에야 파일이 기록됩니다.'
       }
-    ]
+    ],
+    pwa: {
+      label: '// 앱처럼 설치',
+      title: '콘솔을 데스크톱 앱으로 띄우기',
+      body: '브라우저 콘솔은 설치 가능한 PWA로 제공됩니다. Dock·작업표시줄·런처에 추가하면 별도 창으로 열리고, 우클릭 메뉴로 주요 화면에 바로 진입하며, 상단 칩으로 서버 상태를 한눈에 확인할 수 있습니다.',
+      bullets: [
+        'Chrome / Edge / Brave / Arc: 주소창 설치 버튼',
+        'Safari 14+: 파일 → Dock에 추가',
+        'Dock 아이콘 우클릭: Chat / Sessions / Ops / Pulse / Reflection 바로가기',
+        '상단 status pill: 서버 · pulse · reflection · 활성 세션을 한눈에'
+      ],
+      cta: { label: '설치 가이드 →', href: 'https://github.com/devlikebear/tars/blob/main/docs/console-install.md' }
+    }
   },
 
   features: {
