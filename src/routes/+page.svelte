@@ -1,8 +1,10 @@
 <script lang="ts">
   import Header from '$lib/sections/Header.svelte';
+  import ArchiveBanner from '$lib/sections/ArchiveBanner.svelte';
   import Hero from '$lib/sections/Hero.svelte';
   import Intro from '$lib/sections/Intro.svelte';
   import ConsoleShowcase from '$lib/sections/ConsoleShowcase.svelte';
+  import Screenshots from '$lib/sections/Screenshots.svelte';
   import Features from '$lib/sections/Features.svelte';
   import Comparison from '$lib/sections/Comparison.svelte';
   import Architecture from '$lib/sections/Architecture.svelte';
@@ -23,10 +25,12 @@
 </svelte:head>
 
 <Header {t} />
+<ArchiveBanner {t} />
 <main>
   <Hero {t} />
   <Intro {t} />
   <ConsoleShowcase {t} />
+  <Screenshots {t} />
   <Features {t} />
   <Comparison {t} />
   <Architecture {t} />

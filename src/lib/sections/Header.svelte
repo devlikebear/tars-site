@@ -4,6 +4,7 @@
 
   const navItems = $derived([
     { label: t.nav.console, href: '#console' },
+    { label: t.nav.screenshots, href: '#screenshots' },
     { label: t.nav.features, href: '#features' },
     { label: t.nav.compare, href: '#comparison' },
     { label: t.nav.quickstart, href: '#quickstart' }
