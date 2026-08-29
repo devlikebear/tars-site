@@ -134,6 +134,11 @@
     border-color: var(--color-border-default);
   }
 
+  /* The header is sticky, so anchor jumps must clear it. */
+  section[id] {
+    scroll-margin-top: 5rem;
+  }
+
   .label-mono {
     font-family: var(--font-mono);
     font-size: 0.75rem;

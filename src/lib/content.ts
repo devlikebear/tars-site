@@ -17,6 +17,15 @@ export type ComparisonRow = {
 
 export type Feature = { tag: string; title: string; body: string };
 
+export type Shot = {
+  id: string;
+  name: string;
+  path: string;
+  src: string;
+  alt: string;
+  caption: string;
+};
+
 export type InstallMethod = {
   id: 'brew' | 'curl' | 'source';
   label: string;
@@ -38,7 +47,14 @@ export type Translation = {
   pageTitle: string;
   metaDescription: string;
 
-  nav: { console: string; features: string; compare: string; quickstart: string; github: string; star: string };
+  nav: { console: string; screenshots: string; features: string; compare: string; quickstart: string; github: string; star: string };
+
+  archive: {
+    label: string;
+    title: string;
+    body: string;
+    cta: { label: string; href: string };
+  };
 
   hero: {
     label: string;
@@ -68,6 +84,14 @@ export type Translation = {
       bullets: string[];
       cta: { label: string; href: string };
     };
+  };
+
+  screenshots: {
+    label: string;
+    heading: string;
+    sub: string;
+    note: string;
+    shots: Shot[];
   };
 
   features: {
@@ -130,7 +154,14 @@ export const en: Translation = {
   metaDescription:
     'TARS is a local AI agent runtime that runs as a single Go binary on your machine. From the browser console you can directly inspect and control its work — agent runs, memory, scheduled jobs, Git changes, execution history.',
 
-  nav: { console: 'Console', features: 'Features', compare: 'Compare', quickstart: 'Quickstart', github: 'GitHub', star: 'Star' },
+  nav: { console: 'Console', screenshots: 'Screenshots', features: 'Features', compare: 'Compare', quickstart: 'Quickstart', github: 'GitHub', star: 'Star' },
+
+  archive: {
+    label: 'archived',
+    title: 'TARS is archived',
+    body: 'The repository is read-only and development has stopped. v0.35.0 is the last tagged release, and a few unreleased changes landed on main after it — this page describes where the code actually stopped. It still installs, still runs, and the MIT license still applies, but nothing new is coming: read it as a record of what was built rather than a roadmap.',
+    cta: { label: 'Last release →', href: 'https://github.com/devlikebear/tars/releases' }
+  },
 
   hero: {
     label: '// local AI agent runtime',
@@ -159,63 +190,49 @@ export const en: Translation = {
     label: '// the console',
     heading: 'Where you watch\nthe agent work',
     sub: 'Many local agent tools end at a CLI. TARS uses the browser console as its main interface. Open <code class="font-mono text-[var(--color-amber-soft)]">127.0.0.1:43180/console</code> and you get screens that actually let you inspect and control the agent — not just status pages.',
-    plus: 'Plus pages for Plans, System Prompt, Cron, Logs, Pulse, Reflection, and Settings — sidebar grouped under Home / Work / Operate / Setup.',
+    plus: 'The nav is deliberately this short. The last changes before the archive trimmed the sidebar to the pages a single operator opens daily; Lineage, Plans, Memory, System Prompt, Extensions, Agent Runtime, Channels, Cron, Analytics, and Reflection keep their routes and still open by URL — they are just no longer advertised.',
     pages: [
       {
         group: 'Home',
         groupLabel: '/home',
         name: 'Mission Control',
         path: '/console',
-        body: 'Pulse, Reflection, plans, runtime runs, cron jobs, disk pressure, sessions, recommended setup actions — all on one screen. See agent state and ongoing work at a glance.'
+        body: 'The screen you land on. Pulse, Reflection, active plans, runtime runs, cron jobs, disk pressure, sessions, and recommended setup actions on one page — agent state and work in progress at a glance.'
       },
       {
         group: 'Work',
         groupLabel: '/work',
         name: 'Chat',
         path: '/console/chat',
-        body: 'Dock the panels you need: Sessions, Tasks, Health, Git Inspector, Skill Inbox, Cron, Prior Context. Branch sessions at a specific message. First-turn tier recommendation for the model that fits.'
-      },
-      {
-        group: 'Work',
-        groupLabel: '/work',
-        name: 'Lineage',
-        path: '/console/sessions/graph',
-        body: 'Conversation and work flow as a Git-log-style tree. Preview the message where each session branched. Promote insights from a branch into Memory Inbox without touching the parent.'
-      },
-      {
-        group: 'Work',
-        groupLabel: '/work',
-        name: 'Memory',
-        path: '/console/memory',
-        body: 'Review what the agent wants to save as long-term memory before it is stored. Edit stored knowledge as Markdown. Compare Tool path vs Prefetch path recall.'
-      },
-      {
-        group: 'Operate',
-        groupLabel: '/operate',
-        name: 'Agent Runtime',
-        path: '/console/agentruntime',
-        body: 'List, tree, Gantt, and interactive Flow graph views. Replay scrubber, cost flow, file attention, Git diff timeline, checkpoint restart.'
+        body: 'Where the work happens. Dock the panels you need — Sessions, Files, Config, Context, Prompt, Prior Context, Tasks, Git, Skills, Cron, Health. Branch a session at a specific message; the first turn recommends the model tier that fits.'
       },
       {
         group: 'Operate',
         groupLabel: '/operate',
         name: 'Approvals',
         path: '/console/approvals',
-        body: 'Review risky cleanup plans and Git changes before they apply. Approve or reject pending work. The Automation Audit log keeps every decision reviewable.'
+        body: 'Risky cleanup plans wait here for your review before TARS applies them — file paths, size, and reason first, then Approve or Reject. Applied plans keep a result log, and the page also carries the sanitized Remote Execution view.'
       },
       {
         group: 'Operate',
         groupLabel: '/operate',
-        name: 'Analytics',
-        path: '/console/analytics',
-        body: 'Token use, cost per model, tool and skill call counts. Daily usage and cost flow. Daily budget chip in the header.'
+        name: 'Logs',
+        path: '/console/logs',
+        body: 'Tail the runtime log without leaving the browser. Pick the file, filter by level and component, choose how many lines, and expand any line to its raw JSON.'
       },
       {
-        group: 'Work',
-        groupLabel: '/work',
-        name: 'Extensions',
-        path: '/console/extensions',
-        body: 'Build and sandbox-test extensions with Skill Creator and MCP Server Creator. Hub installs surface trust signals: score, last update, passing tests, install count. A hub-source dropdown federates the catalog across tars-hub, openclaw, hermes, and Anthropic skills, and external installs open a dry-run modal showing the converted frontmatter, per-file sha256, adapter warnings, and ATTRIBUTION notice before any file is written.'
+        group: 'Operate',
+        groupLabel: '/operate',
+        name: 'Pulse',
+        path: '/console/pulse',
+        body: 'The watchdog surface. Cron failures, stuck runs, disk pressure, Telegram delivery, and reflection health are checked every 60s; an LLM classifier sorts each tick into ignore / notify / autofix, and only whitelisted autofixes may act.'
+      },
+      {
+        group: 'Setup',
+        groupLabel: '/setup',
+        name: 'Settings',
+        path: '/console/config',
+        body: 'Quick Start checks only, by design: provider credentials, tier bindings, workspace path, and the switches that gate Pulse, Reflection, and Remote Access. Long-tail configuration lives in YAML, where it can be diffed and version-controlled.'
       }
     ],
     pwa: {
@@ -230,6 +247,60 @@ export const en: Translation = {
       ],
       cta: { label: 'Install guide →', href: 'https://github.com/devlikebear/tars/blob/main/docs/console-install.md' }
     }
+  },
+
+  screenshots: {
+    label: '// screenshots',
+    heading: 'The console,\nas it actually ships',
+    sub: 'Captured from a running <code class="font-mono text-[var(--color-amber-soft)]">tars serve</code>, built from the code as it was archived — the five screens the sidebar leads to, in the order it lists them.',
+    note: 'Real screens from a local install, not mockups. The workspace is a throwaway one, so the numbers are small — an everyday workspace fills these pages out.',
+    shots: [
+      {
+        id: 'chat',
+        name: 'Chat',
+        path: '/console/chat',
+        src: '/screens/console-chat.webp',
+        alt: 'TARS console Chat page: session list on the left, a two-turn conversation in the middle, dockable panel tabs across the top',
+        caption:
+          'A session mid-conversation. Panel tabs across the top dock Sessions, Files, Git, Tasks, Health and the rest beside the transcript; the header carries session health and the active working directory.'
+      },
+      {
+        id: 'approvals',
+        name: 'Approvals',
+        path: '/console/approvals',
+        src: '/screens/console-approvals.webp',
+        alt: 'TARS console Approvals page showing the review queue, what triggers an approval, and the Remote Execution panel',
+        caption:
+          'The review queue, with what puts something in it and what each decision does. Remote execution sits on the same page, reporting disabled because it is off by default.'
+      },
+      {
+        id: 'logs',
+        name: 'Logs',
+        path: '/console/logs',
+        src: '/screens/console-logs.webp',
+        alt: 'TARS console Logs page tailing the runtime log filtered to INFO level',
+        caption:
+          'The runtime log, filtered to INFO here. File, level, component and line count are all filters; any line expands to the raw JSON record behind it.'
+      },
+      {
+        id: 'pulse',
+        name: 'Pulse',
+        path: '/console/pulse',
+        src: '/screens/console-pulse.webp',
+        alt: 'TARS console Pulse page listing watch targets, the ignore/notify/autofix actions, and current watchdog status',
+        caption:
+          'What the watchdog watches, and what it is allowed to do about it. The tick counters below are live: this run classified a disk-pressure signal as notify rather than autofix.'
+      },
+      {
+        id: 'settings',
+        name: 'Settings',
+        path: '/console/config',
+        src: '/screens/console-settings.webp',
+        alt: 'TARS console Settings page showing the Quick Start readiness cards, 9 of 10 ready',
+        caption:
+          'Quick Start, and only Quick Start. Each card is one gate between you and a working install, with a readiness badge and a note when the change needs a restart.'
+      }
+    ]
   },
 
   features: {
@@ -315,7 +386,7 @@ export const en: Translation = {
         tars: 'Skills + companion CLIs + gated plugins/MCP'
       }
     ]),
-    footnote: 'Comparison is from the TARS perspective and intentionally simplified. Read the source for each project to form your own view.'
+    footnote: 'Verified on 2026-08-02 against TARS v0.35.0, OpenClaw v2026.7.1, and Hermes Agent v0.19.1. TARS stopped there; the other two did not, so treat their columns as a snapshot of that date. The comparison is from the TARS perspective and intentionally simplified — read the source for each project to form your own view.'
   },
 
   architecture: {
@@ -345,7 +416,7 @@ export const en: Translation = {
       {
         id: 'source',
         label: 'From source',
-        note: 'For development. Requires Go 1.25+ and Node 20+',
+        note: 'For development. Requires Go 1.25.6+ (Node only for the console build)',
         code: 'git clone https://github.com/devlikebear/tars.git\ncd tars\nmake build'
       }
     ],
@@ -376,9 +447,9 @@ export const en: Translation = {
     cols: { project: 'Project', extend: 'Extend', operator: 'Operator' },
     links: {
       project: [
-        { label: 'GitHub', href: 'https://github.com/devlikebear/tars' },
-        { label: 'Issues', href: 'https://github.com/devlikebear/tars/issues' },
-        { label: 'Releases', href: 'https://github.com/devlikebear/tars/releases' }
+        { label: 'GitHub (archived)', href: 'https://github.com/devlikebear/tars' },
+        { label: 'Releases', href: 'https://github.com/devlikebear/tars/releases' },
+        { label: 'Changelog', href: 'https://github.com/devlikebear/tars/blob/main/CHANGELOG.md' }
       ],
       extend: [
         { label: 'Skills', href: 'https://github.com/devlikebear/tars-skills' },
@@ -389,7 +460,7 @@ export const en: Translation = {
         { label: 'insights.marvin-42.com', href: 'https://insights.marvin-42.com' }
       ]
     },
-    legal: 'MIT License · An homage to TARS from <em>Interstellar</em>; not affiliated with the film.'
+    legal: 'Archived · Last release v0.35.0 · MIT License · An homage to TARS from <em>Interstellar</em>; not affiliated with the film.'
   }
 };
 
@@ -401,7 +472,14 @@ export const ko: Translation = {
   metaDescription:
     'TARS는 Go 기반 단일 바이너리로 실행되는 로컬 AI 에이전트 런타임입니다. 브라우저 콘솔에서 에이전트의 작업 흐름, 메모리, 스케줄 작업, Git 변경사항을 직접 확인하고 제어할 수 있습니다.',
 
-  nav: { console: '콘솔', features: '기능', compare: '비교', quickstart: '빠른 시작', github: 'GitHub', star: 'Star' },
+  nav: { console: '콘솔', screenshots: '스크린샷', features: '기능', compare: '비교', quickstart: '빠른 시작', github: 'GitHub', star: 'Star' },
+
+  archive: {
+    label: 'archived',
+    title: 'TARS는 아카이브되었습니다',
+    body: '저장소는 읽기 전용으로 전환되었고 개발은 멈췄습니다. 마지막 태그 릴리스는 v0.35.0이고 그 뒤로 릴리스되지 않은 변경이 main에 몇 개 더 올라갔는데, 이 페이지는 코드가 실제로 멈춘 지점을 기준으로 합니다. 설치도 실행도 그대로 되고 MIT 라이선스도 유효하지만 새로 추가되는 것은 없으니, 앞으로의 계획이 아니라 만들어진 결과의 기록으로 읽어주세요.',
+    cta: { label: '마지막 릴리스 →', href: 'https://github.com/devlikebear/tars/releases' }
+  },
 
   hero: {
     label: '// 로컬 AI 에이전트 런타임',
@@ -431,63 +509,49 @@ export const ko: Translation = {
     label: '// 콘솔',
     heading: '에이전트가 일하는 과정을\n직접 확인하는 공간',
     sub: '많은 로컬 에이전트 도구는 CLI 하나로 끝납니다. TARS는 브라우저 콘솔을 중심 인터페이스로 사용합니다. <code class="font-mono text-[var(--color-amber-soft)]">127.0.0.1:43180/console</code>을 열면, 단순한 상태 페이지가 아니라 실제로 에이전트를 확인하고 제어할 수 있는 화면을 만나게 됩니다.',
-    plus: '이 외에도 Plans, System Prompt, Cron, Logs, Pulse, Reflection, Settings 화면이 있고, 사이드바는 Home / Work / Operate / Setup으로 그룹화됩니다.',
+    plus: '내비게이션이 짧은 것은 의도된 결과입니다. 개발이 멈추기 직전의 변경에서 사이드바는 한 사람이 매일 여는 화면만 남기고 정리했고, Lineage · Plans · Memory · System Prompt · Extensions · Agent Runtime · Channels · Cron · Analytics · Reflection은 라우트가 그대로 살아 있어 URL로는 여전히 열립니다 — 목록에 노출하지 않을 뿐입니다.',
     pages: [
       {
         group: 'Home',
         groupLabel: '/home',
         name: 'Mission Control',
         path: '/console',
-        body: 'Pulse, Reflection, 플랜, 런타임 실행, Cron 작업, 디스크 상태, 세션, 권장 설정 작업을 한 화면에서 확인. 에이전트의 상태와 진행 중인 작업을 빠르게 파악할 수 있습니다.'
+        body: '콘솔을 열면 처음 만나는 화면. Pulse, Reflection, 진행 중인 플랜, 런타임 실행, Cron 작업, 디스크 상태, 세션, 권장 설정 작업이 한 페이지에 모여 에이전트 상태와 진행 중인 일을 한눈에 보여줍니다.'
       },
       {
         group: 'Work',
         groupLabel: '/work',
         name: 'Chat',
         path: '/console/chat',
-        body: 'Sessions, Tasks, Health, Git Inspector, Skill Inbox, Cron, Prior Context 패널을 도크. 메시지 단위로 세션을 분기. 첫 턴에서는 작업에 맞는 모델 티어를 추천합니다.'
-      },
-      {
-        group: 'Work',
-        groupLabel: '/work',
-        name: 'Lineage',
-        path: '/console/sessions/graph',
-        body: '대화와 작업 흐름을 Git 로그처럼 트리 구조로 확인. 어느 메시지에서 분기했는지 미리보기. 부모 대화는 그대로 두고 분기 인사이트만 Memory Inbox로 승격.'
-      },
-      {
-        group: 'Work',
-        groupLabel: '/work',
-        name: 'Memory',
-        path: '/console/memory',
-        body: '에이전트가 장기 기억으로 저장하려는 내용을 저장 전 검토. Markdown으로 직접 편집. Tool path와 Prefetch path 리콜 결과를 비교해 어떤 정보가 참조되는지 확인.'
-      },
-      {
-        group: 'Operate',
-        groupLabel: '/operate',
-        name: 'Agent Runtime',
-        path: '/console/agentruntime',
-        body: '리스트, 트리, Gantt, 인터랙티브 Flow 그래프 4가지 뷰. Replay 스크러버, 비용 흐름, 파일 어텐션, Git diff 타임라인, 체크포인트 재시작.'
+        body: '실제 작업이 일어나는 곳. Sessions, Files, Config, Context, Prompt, Prior Context, Tasks, Git, Skills, Cron, Health 중 필요한 패널을 대화 옆에 도크합니다. 특정 메시지 지점에서 세션을 분기할 수 있고, 첫 턴에서는 작업에 맞는 모델 티어를 추천합니다.'
       },
       {
         group: 'Operate',
         groupLabel: '/operate',
         name: 'Approvals',
         path: '/console/approvals',
-        body: '위험한 정리 작업과 Git 변경을 적용 전 검토. 승인 대기 작업을 사용자가 결정. Automation Audit 로그가 모든 결정을 보관해 나중에 다시 확인할 수 있습니다.'
+        body: '위험한 정리 작업이 적용되기 전에 대기하는 곳. 파일 경로와 크기, 이유를 먼저 보여주고 승인/거부를 사용자가 정합니다. 적용된 계획은 결과 로그로 남고, 같은 페이지에서 원격 실행 상태도 확인할 수 있습니다.'
       },
       {
         group: 'Operate',
         groupLabel: '/operate',
-        name: 'Analytics',
-        path: '/console/analytics',
-        body: '토큰 사용량, 모델별 비용, 도구·스킬 호출 횟수. 일별 사용량과 비용 흐름. 헤더에는 일일 예산 칩.'
+        name: 'Logs',
+        path: '/console/logs',
+        body: '브라우저를 벗어나지 않고 런타임 로그를 확인. 파일, 레벨, 컴포넌트, 줄 수로 필터링하고, 각 줄을 펼치면 원본 JSON 레코드를 그대로 볼 수 있습니다.'
       },
       {
-        group: 'Work',
-        groupLabel: '/work',
-        name: 'Extensions',
-        path: '/console/extensions',
-        body: 'Skill Creator와 MCP Server Creator로 확장을 만들고 샌드박스 테스트. 허브 설치 시 점수, 마지막 업데이트, 테스트 통과 여부, 설치 수가 함께 표시됩니다. 허브 출처 드롭다운으로 tars-hub·openclaw·hermes·Anthropic skills를 한곳에서 검색하고, 외부 허브 설치는 변환된 frontmatter, 파일별 sha256, 어댑터 경고, ATTRIBUTION 안내를 보여주는 dry-run 모달을 거친 뒤에야 파일이 기록됩니다.'
+        group: 'Operate',
+        groupLabel: '/operate',
+        name: 'Pulse',
+        path: '/console/pulse',
+        body: '감시 루프 화면. 60초마다 Cron 실패, 멈춘 실행, 디스크 압력, Telegram 전송, Reflection 상태를 점검하고, LLM 분류기가 각 틱을 ignore / notify / autofix로 나눕니다. autofix는 허용 목록에 있는 것만 실행됩니다.'
+      },
+      {
+        group: 'Setup',
+        groupLabel: '/setup',
+        name: 'Settings',
+        path: '/console/config',
+        body: '의도적으로 Quick Start 점검만 남긴 화면. 프로바이더 자격증명, 티어 바인딩, 워크스페이스 경로, 그리고 Pulse · Reflection · 원격 접속을 켜고 끄는 스위치입니다. 나머지 설정은 diff와 버전 관리가 되는 YAML에 둡니다.'
       }
     ],
     pwa: {
@@ -502,6 +566,60 @@ export const ko: Translation = {
       ],
       cta: { label: '설치 가이드 →', href: 'https://github.com/devlikebear/tars/blob/main/docs/console-install.md' }
     }
+  },
+
+  screenshots: {
+    label: '// 스크린샷',
+    heading: '실제로 배포된\n콘솔 화면',
+    sub: '아카이브된 시점의 코드를 <code class="font-mono text-[var(--color-amber-soft)]">tars serve</code>로 직접 띄워 캡처했습니다 — 사이드바가 안내하는 다섯 화면을, 사이드바에 놓인 순서 그대로.',
+    note: '목업이 아니라 로컬 설치본의 실제 화면입니다. 캡처용으로 새로 만든 워크스페이스라 숫자가 작을 뿐, 실제로 쓰는 워크스페이스에서는 이 화면들이 훨씬 빽빽하게 채워집니다.',
+    shots: [
+      {
+        id: 'chat',
+        name: 'Chat',
+        path: '/console/chat',
+        src: '/screens/console-chat.webp',
+        alt: 'TARS 콘솔 Chat 화면: 왼쪽 세션 목록, 가운데 두 번의 대화, 위쪽 패널 탭',
+        caption:
+          '대화가 진행 중인 세션. 위쪽 탭으로 Sessions, Files, Git, Tasks, Health 같은 패널을 대화 옆에 붙일 수 있고, 헤더에는 세션 상태와 현재 작업 디렉터리가 함께 표시됩니다.'
+      },
+      {
+        id: 'approvals',
+        name: 'Approvals',
+        path: '/console/approvals',
+        src: '/screens/console-approvals.webp',
+        alt: 'TARS 콘솔 Approvals 화면: 검토 대기열, 승인이 필요한 조건, 원격 실행 패널',
+        caption:
+          '검토 대기열과 함께, 무엇이 여기로 올라오고 각 결정이 무슨 일을 하는지 나란히 설명합니다. 원격 실행도 같은 페이지에 있으며 기본값이 꺼짐이라 disabled로 표시됩니다.'
+      },
+      {
+        id: 'logs',
+        name: 'Logs',
+        path: '/console/logs',
+        src: '/screens/console-logs.webp',
+        alt: 'TARS 콘솔 Logs 화면: INFO 레벨로 필터링된 런타임 로그',
+        caption:
+          '런타임 로그를 INFO로 필터링한 모습. 파일 · 레벨 · 컴포넌트 · 줄 수가 모두 필터이고, 각 줄을 펼치면 원본 JSON 레코드가 나옵니다.'
+      },
+      {
+        id: 'pulse',
+        name: 'Pulse',
+        path: '/console/pulse',
+        src: '/screens/console-pulse.webp',
+        alt: 'TARS 콘솔 Pulse 화면: 감시 대상, ignore/notify/autofix 동작, 현재 감시 상태',
+        caption:
+          '감시 루프가 무엇을 보고, 그에 대해 무엇까지 할 수 있는지. 아래 카운터는 실제 값으로, 이 실행에서는 디스크 압력 신호를 autofix가 아닌 notify로 분류했습니다.'
+      },
+      {
+        id: 'settings',
+        name: 'Settings',
+        path: '/console/config',
+        src: '/screens/console-settings.webp',
+        alt: 'TARS 콘솔 Settings 화면: Quick Start 준비 상태 카드, 10개 중 9개 완료',
+        caption:
+          'Quick Start, 그리고 Quick Start만. 카드 하나가 곧 동작하는 설치까지 남은 관문 하나이며, 준비 상태 배지와 재시작이 필요한지 여부가 함께 표시됩니다.'
+      }
+    ]
   },
 
   features: {
@@ -587,7 +705,7 @@ export const ko: Translation = {
         tars: '스킬 + 동반 CLI + 허용 기반 plugins/MCP'
       }
     ]),
-    footnote: '이 비교는 TARS 관점에서 의도적으로 단순화한 것입니다. 각 프로젝트의 소스를 직접 보고 본인의 관점을 만드세요.'
+    footnote: '2026-08-02 기준으로 TARS v0.35.0, OpenClaw v2026.7.1, Hermes Agent v0.19.1을 놓고 확인한 내용입니다. TARS는 여기서 멈췄지만 나머지 두 프로젝트는 계속 움직이고 있으므로, 그쪽 열은 그 시점의 스냅숏으로 봐주세요. 비교는 TARS 관점에서 의도적으로 단순화한 것이니 각 프로젝트의 소스를 직접 보고 본인의 관점을 만드시길 권합니다.'
   },
 
   architecture: {
@@ -617,7 +735,7 @@ export const ko: Translation = {
       {
         id: 'source',
         label: '소스에서',
-        note: '개발용. Go 1.25+ 와 Node 20+ 필요',
+        note: '개발용. Go 1.25.6+ 필요 (Node는 콘솔 빌드에만)',
         code: 'git clone https://github.com/devlikebear/tars.git\ncd tars\nmake build'
       }
     ],
@@ -648,9 +766,9 @@ export const ko: Translation = {
     cols: { project: '프로젝트', extend: '확장', operator: '운영자' },
     links: {
       project: [
-        { label: 'GitHub', href: 'https://github.com/devlikebear/tars' },
-        { label: 'Issues', href: 'https://github.com/devlikebear/tars/issues' },
-        { label: 'Releases', href: 'https://github.com/devlikebear/tars/releases' }
+        { label: 'GitHub (아카이브)', href: 'https://github.com/devlikebear/tars' },
+        { label: 'Releases', href: 'https://github.com/devlikebear/tars/releases' },
+        { label: 'Changelog', href: 'https://github.com/devlikebear/tars/blob/main/CHANGELOG.md' }
       ],
       extend: [
         { label: 'Skills', href: 'https://github.com/devlikebear/tars-skills' },
@@ -661,6 +779,6 @@ export const ko: Translation = {
         { label: 'insights.marvin-42.com', href: 'https://insights.marvin-42.com' }
       ]
     },
-    legal: 'MIT 라이선스 · TARS는 영화 <em>인터스텔라</em>의 TARS에 대한 오마주이며, 영화와 무관합니다.'
+    legal: '아카이브됨 · 마지막 릴리스 v0.35.0 · MIT 라이선스 · TARS는 영화 <em>인터스텔라</em>의 TARS에 대한 오마주이며, 영화와 무관합니다.'
   }
 };
