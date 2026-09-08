@@ -157,10 +157,10 @@ export const en: Translation = {
   nav: { console: 'Console', screenshots: 'Screenshots', features: 'Features', compare: 'Compare', quickstart: 'Quickstart', github: 'GitHub', star: 'Star' },
 
   archive: {
-    label: 'archived',
-    title: 'TARS is archived',
-    body: 'The repository is read-only and development has stopped. v0.35.0 is the last tagged release, and a few unreleased changes landed on main after it — this page describes where the code actually stopped. It still installs, still runs, and the MIT license still applies, but nothing new is coming: read it as a record of what was built rather than a roadmap.',
-    cta: { label: 'Last release →', href: 'https://github.com/devlikebear/tars/releases' }
+    label: 'development resumed',
+    title: 'TARS development has resumed',
+    body: 'TARS is no longer archived and development has resumed. v0.35.0 remains the latest tagged release; main includes additional unreleased changes. This page describes main, so some features and console screens may differ from the latest release.',
+    cta: { label: 'Latest release →', href: 'https://github.com/devlikebear/tars/releases' }
   },
 
   hero: {
@@ -190,7 +190,7 @@ export const en: Translation = {
     label: '// the console',
     heading: 'Where you watch\nthe agent work',
     sub: 'Many local agent tools end at a CLI. TARS uses the browser console as its main interface. Open <code class="font-mono text-[var(--color-amber-soft)]">127.0.0.1:43180/console</code> and you get screens that actually let you inspect and control the agent — not just status pages.',
-    plus: 'The nav is deliberately this short. The last changes before the archive trimmed the sidebar to the pages a single operator opens daily; Lineage, Plans, Memory, System Prompt, Extensions, Agent Runtime, Channels, Cron, Analytics, and Reflection keep their routes and still open by URL — they are just no longer advertised.',
+    plus: 'The nav is deliberately this short. Recent changes on main trimmed the sidebar to the pages a single operator opens daily; Lineage, Plans, Memory, System Prompt, Extensions, Agent Runtime, Channels, Cron, Analytics, and Reflection keep their routes and still open by URL — they are just no longer advertised.',
     pages: [
       {
         group: 'Home',
@@ -252,7 +252,7 @@ export const en: Translation = {
   screenshots: {
     label: '// screenshots',
     heading: 'The console,\nas it actually ships',
-    sub: 'Captured from a running <code class="font-mono text-[var(--color-amber-soft)]">tars serve</code>, built from the code as it was archived — the five screens the sidebar leads to, in the order it lists them.',
+    sub: 'Captured from a running <code class="font-mono text-[var(--color-amber-soft)]">tars serve</code>, built from an August 2026 snapshot of main — the five screens the sidebar leads to, in the order it lists them.',
     note: 'Real screens from a local install, not mockups. The workspace is a throwaway one, so the numbers are small — an everyday workspace fills these pages out.',
     shots: [
       {
@@ -386,7 +386,7 @@ export const en: Translation = {
         tars: 'Skills + companion CLIs + gated plugins/MCP'
       }
     ]),
-    footnote: 'Verified on 2026-08-02 against TARS v0.35.0, OpenClaw v2026.7.1, and Hermes Agent v0.19.1. TARS stopped there; the other two did not, so treat their columns as a snapshot of that date. The comparison is from the TARS perspective and intentionally simplified — read the source for each project to form your own view.'
+    footnote: 'Verified on 2026-08-02 against TARS v0.35.0, OpenClaw v2026.7.1, and Hermes Agent v0.19.1. Treat all three columns as a snapshot of that date, not a comparison of current releases. The comparison is from the TARS perspective and intentionally simplified — read the source for each project to form your own view.'
   },
 
   architecture: {
@@ -447,7 +447,7 @@ export const en: Translation = {
     cols: { project: 'Project', extend: 'Extend', operator: 'Operator' },
     links: {
       project: [
-        { label: 'GitHub (archived)', href: 'https://github.com/devlikebear/tars' },
+        { label: 'GitHub', href: 'https://github.com/devlikebear/tars' },
         { label: 'Releases', href: 'https://github.com/devlikebear/tars/releases' },
         { label: 'Changelog', href: 'https://github.com/devlikebear/tars/blob/main/CHANGELOG.md' }
       ],
@@ -460,7 +460,7 @@ export const en: Translation = {
         { label: 'insights.marvin-42.com', href: 'https://insights.marvin-42.com' }
       ]
     },
-    legal: 'Archived · Last release v0.35.0 · MIT License · An homage to TARS from <em>Interstellar</em>; not affiliated with the film.'
+    legal: 'Development resumed · Latest release v0.35.0 · MIT License · An homage to TARS from <em>Interstellar</em>; not affiliated with the film.'
   }
 };
 
@@ -475,10 +475,10 @@ export const ko: Translation = {
   nav: { console: '콘솔', screenshots: '스크린샷', features: '기능', compare: '비교', quickstart: '빠른 시작', github: 'GitHub', star: 'Star' },
 
   archive: {
-    label: 'archived',
-    title: 'TARS는 아카이브되었습니다',
-    body: '저장소는 읽기 전용으로 전환되었고 개발은 멈췄습니다. 마지막 태그 릴리스는 v0.35.0이고 그 뒤로 릴리스되지 않은 변경이 main에 몇 개 더 올라갔는데, 이 페이지는 코드가 실제로 멈춘 지점을 기준으로 합니다. 설치도 실행도 그대로 되고 MIT 라이선스도 유효하지만 새로 추가되는 것은 없으니, 앞으로의 계획이 아니라 만들어진 결과의 기록으로 읽어주세요.',
-    cta: { label: '마지막 릴리스 →', href: 'https://github.com/devlikebear/tars/releases' }
+    label: 'development resumed',
+    title: 'TARS 개발을 재개했습니다',
+    body: 'TARS의 아카이브를 해제하고 개발을 재개했습니다. 최신 태그 릴리스는 v0.35.0이며 main에는 추가 미출시 변경이 포함되어 있습니다. 이 페이지는 main을 설명하므로 일부 기능과 콘솔 화면은 최신 릴리스와 다를 수 있습니다.',
+    cta: { label: '최신 릴리스 →', href: 'https://github.com/devlikebear/tars/releases' }
   },
 
   hero: {
@@ -509,7 +509,7 @@ export const ko: Translation = {
     label: '// 콘솔',
     heading: '에이전트가 일하는 과정을\n직접 확인하는 공간',
     sub: '많은 로컬 에이전트 도구는 CLI 하나로 끝납니다. TARS는 브라우저 콘솔을 중심 인터페이스로 사용합니다. <code class="font-mono text-[var(--color-amber-soft)]">127.0.0.1:43180/console</code>을 열면, 단순한 상태 페이지가 아니라 실제로 에이전트를 확인하고 제어할 수 있는 화면을 만나게 됩니다.',
-    plus: '내비게이션이 짧은 것은 의도된 결과입니다. 개발이 멈추기 직전의 변경에서 사이드바는 한 사람이 매일 여는 화면만 남기고 정리했고, Lineage · Plans · Memory · System Prompt · Extensions · Agent Runtime · Channels · Cron · Analytics · Reflection은 라우트가 그대로 살아 있어 URL로는 여전히 열립니다 — 목록에 노출하지 않을 뿐입니다.',
+    plus: '내비게이션이 짧은 것은 의도된 결과입니다. main에 반영된 변경에서 사이드바는 한 사람이 매일 여는 화면만 남기고 정리했고, Lineage · Plans · Memory · System Prompt · Extensions · Agent Runtime · Channels · Cron · Analytics · Reflection은 라우트가 그대로 살아 있어 URL로는 여전히 열립니다 — 목록에 노출하지 않을 뿐입니다.',
     pages: [
       {
         group: 'Home',
@@ -571,7 +571,7 @@ export const ko: Translation = {
   screenshots: {
     label: '// 스크린샷',
     heading: '실제로 배포된\n콘솔 화면',
-    sub: '아카이브된 시점의 코드를 <code class="font-mono text-[var(--color-amber-soft)]">tars serve</code>로 직접 띄워 캡처했습니다 — 사이드바가 안내하는 다섯 화면을, 사이드바에 놓인 순서 그대로.',
+    sub: '2026년 8월의 main 스냅숏을 <code class="font-mono text-[var(--color-amber-soft)]">tars serve</code>로 직접 띄워 캡처했습니다 — 사이드바가 안내하는 다섯 화면을, 사이드바에 놓인 순서 그대로.',
     note: '목업이 아니라 로컬 설치본의 실제 화면입니다. 캡처용으로 새로 만든 워크스페이스라 숫자가 작을 뿐, 실제로 쓰는 워크스페이스에서는 이 화면들이 훨씬 빽빽하게 채워집니다.',
     shots: [
       {
@@ -705,7 +705,7 @@ export const ko: Translation = {
         tars: '스킬 + 동반 CLI + 허용 기반 plugins/MCP'
       }
     ]),
-    footnote: '2026-08-02 기준으로 TARS v0.35.0, OpenClaw v2026.7.1, Hermes Agent v0.19.1을 놓고 확인한 내용입니다. TARS는 여기서 멈췄지만 나머지 두 프로젝트는 계속 움직이고 있으므로, 그쪽 열은 그 시점의 스냅숏으로 봐주세요. 비교는 TARS 관점에서 의도적으로 단순화한 것이니 각 프로젝트의 소스를 직접 보고 본인의 관점을 만드시길 권합니다.'
+    footnote: '2026-08-02 기준으로 TARS v0.35.0, OpenClaw v2026.7.1, Hermes Agent v0.19.1을 놓고 확인한 내용입니다. 세 프로젝트 모두 해당 시점의 스냅숏이며 현재 릴리스 간 비교가 아닙니다. 비교는 TARS 관점에서 의도적으로 단순화한 것이니 각 프로젝트의 소스를 직접 보고 본인의 관점을 만드시길 권합니다.'
   },
 
   architecture: {
@@ -766,7 +766,7 @@ export const ko: Translation = {
     cols: { project: '프로젝트', extend: '확장', operator: '운영자' },
     links: {
       project: [
-        { label: 'GitHub (아카이브)', href: 'https://github.com/devlikebear/tars' },
+        { label: 'GitHub', href: 'https://github.com/devlikebear/tars' },
         { label: 'Releases', href: 'https://github.com/devlikebear/tars/releases' },
         { label: 'Changelog', href: 'https://github.com/devlikebear/tars/blob/main/CHANGELOG.md' }
       ],
@@ -779,6 +779,6 @@ export const ko: Translation = {
         { label: 'insights.marvin-42.com', href: 'https://insights.marvin-42.com' }
       ]
     },
-    legal: '아카이브됨 · 마지막 릴리스 v0.35.0 · MIT 라이선스 · TARS는 영화 <em>인터스텔라</em>의 TARS에 대한 오마주이며, 영화와 무관합니다.'
+    legal: '개발 재개 · 최신 릴리스 v0.35.0 · MIT 라이선스 · TARS는 영화 <em>인터스텔라</em>의 TARS에 대한 오마주이며, 영화와 무관합니다.'
   }
 };
