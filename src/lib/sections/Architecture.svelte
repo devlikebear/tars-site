@@ -5,7 +5,7 @@
 
 <section id="architecture" class="border-b border-[var(--color-border-subtle)]">
   <div class="container-tars py-20 md:py-24">
-    <div class="grid md:grid-cols-12 gap-10">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-10">
       <div class="md:col-span-4">
         <span class="label-mono mb-3 inline-block">{t.architecture.label}</span>
         <h2 class="text-3xl md:text-4xl font-display font-semibold tracking-tight">{@html t.architecture.heading.replace(/\n/g, '<br/>')}</h2>

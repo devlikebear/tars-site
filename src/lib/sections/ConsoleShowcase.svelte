@@ -18,7 +18,7 @@
       <p class="text-[var(--color-text-secondary)] leading-relaxed">{@html t.console.sub}</p>
     </div>
 
-    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
       {#each t.console.pages as page}
         <div class="card flex flex-col gap-3">
           <div class="flex items-center justify-between">

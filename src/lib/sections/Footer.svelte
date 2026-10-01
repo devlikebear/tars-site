@@ -7,7 +7,7 @@
 
 <footer>
   <div class="container-tars py-12">
-    <div class="grid md:grid-cols-12 gap-8">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
       <div class="md:col-span-5">
         <div class="flex items-center gap-2 mb-3">
           <span class="inline-flex w-7 h-7 items-center justify-center rounded-md bg-[var(--color-amber)]/15 text-[var(--color-amber-soft)] font-mono">T</span>

@@ -41,7 +41,7 @@
       <pre class="font-mono text-xs text-[var(--color-text-primary)] bg-[var(--color-surface-inset)] border border-[var(--color-border-subtle)] rounded-md p-3 overflow-x-auto leading-relaxed">{active.code}</pre>
     </div>
 
-    <div class="grid md:grid-cols-2 gap-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
       <div class="card flex flex-col gap-3">
         <div class="flex items-center gap-3">
           <span class="font-mono text-xs text-[var(--color-amber-soft)]">{t.quickstart.initLabel}</span>

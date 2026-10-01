@@ -405,7 +405,7 @@ export const en: Translation = {
       {
         id: 'brew',
         label: 'Homebrew',
-        note: 'macOS / Linux — pre-built binary with console',
+        note: 'macOS (Apple silicon and Intel) — pre-built binary with console. On Linux, build from source.',
         code: 'brew tap devlikebear/tap\nbrew install devlikebear/tap/tars'
       },
       {
@@ -417,7 +417,7 @@ export const en: Translation = {
       {
         id: 'curl',
         label: 'curl',
-        note: 'Linux / macOS one-liner — pre-built binary with console',
+        note: 'macOS one-liner — pre-built binary with console, installed to ~/.local/bin. On Linux, build from source.',
         code: 'curl -fsSL https://raw.githubusercontent.com/devlikebear/tars/main/install.sh | sh'
       },
       {
@@ -731,7 +731,7 @@ export const ko: Translation = {
       {
         id: 'brew',
         label: 'Homebrew',
-        note: 'macOS / Linux — 콘솔이 포함된 사전 빌드 바이너리',
+        note: 'macOS(Apple silicon·Intel) — 콘솔이 포함된 사전 빌드 바이너리. Linux에서는 소스에서 빌드하세요.',
         code: 'brew tap devlikebear/tap\nbrew install devlikebear/tap/tars'
       },
       {
@@ -743,7 +743,7 @@ export const ko: Translation = {
       {
         id: 'curl',
         label: 'curl',
-        note: 'Linux / macOS 한 줄 — 콘솔이 포함된 사전 빌드 바이너리',
+        note: 'macOS 한 줄 설치 — 콘솔이 포함된 사전 빌드 바이너리를 ~/.local/bin에 설치합니다. Linux에서는 소스에서 빌드하세요.',
         code: 'curl -fsSL https://raw.githubusercontent.com/devlikebear/tars/main/install.sh | sh'
       },
       {

@@ -11,7 +11,7 @@
       <p class="text-[var(--color-text-secondary)] leading-relaxed">{t.features.sub}</p>
     </div>
 
-    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
       {#each t.features.items as feature}
         <div class="card flex flex-col gap-3">
           <span class="font-mono text-xs text-[var(--color-amber-soft)]">{feature.tag}</span>
