@@ -27,7 +27,7 @@ export type Shot = {
 };
 
 export type InstallMethod = {
-  id: 'brew' | 'curl' | 'source';
+  id: 'brew' | 'desktop' | 'curl' | 'source';
   label: string;
   note: string;
   code: string;
@@ -159,7 +159,7 @@ export const en: Translation = {
   archive: {
     label: 'development resumed',
     title: 'TARS development has resumed',
-    body: 'TARS is no longer archived and development has resumed. v0.35.0 remains the latest tagged release; main includes additional unreleased changes. This page describes main, so some features and console screens may differ from the latest release.',
+    body: 'TARS is no longer archived and development has resumed. v0.42.2 is the latest tagged release; main may include additional unreleased changes. This page describes main, so some features and console screens may differ from the latest release.',
     cta: { label: 'Latest release →', href: 'https://github.com/devlikebear/tars/releases' }
   },
 
@@ -243,7 +243,8 @@ export const en: Translation = {
         'Chrome / Edge / Brave / Arc: address bar install button',
         'Safari 14+: File → Add to Dock',
         'Right-click the Dock icon: Chat / Sessions / Ops / Pulse / Reflection shortcuts',
-        'Topbar status pill: server · pulse · reflection · active sessions in one glance'
+        'Topbar status pill: server · pulse · reflection · active sessions in one glance',
+        'Native macOS app with tray and approval notifications: brew install --cask devlikebear/tap/tars-desktop'
       ],
       cta: { label: 'Install guide →', href: 'https://github.com/devlikebear/tars/blob/main/docs/console-install.md' }
     }
@@ -408,6 +409,12 @@ export const en: Translation = {
         code: 'brew tap devlikebear/tap\nbrew install devlikebear/tap/tars'
       },
       {
+        id: 'desktop',
+        label: 'Desktop app (macOS)',
+        note: 'Signed and notarized TARS.app — tray, approval notifications, its own window — and the server formula in one command. Open TARS and choose Start server in the tray: the first run installs the service and opens the setup wizard, so steps 02 and 03 are done for you.',
+        code: 'brew install --cask devlikebear/tap/tars-desktop'
+      },
+      {
         id: 'curl',
         label: 'curl',
         note: 'Linux / macOS one-liner — pre-built binary with console',
@@ -460,7 +467,7 @@ export const en: Translation = {
         { label: 'insights.marvin-42.com', href: 'https://insights.marvin-42.com' }
       ]
     },
-    legal: 'Development resumed · Latest release v0.35.0 · MIT License · An homage to TARS from <em>Interstellar</em>; not affiliated with the film.'
+    legal: 'Development resumed · Latest release v0.42.2 · MIT License · An homage to TARS from <em>Interstellar</em>; not affiliated with the film.'
   }
 };
 
@@ -477,7 +484,7 @@ export const ko: Translation = {
   archive: {
     label: 'development resumed',
     title: 'TARS 개발을 재개했습니다',
-    body: 'TARS의 아카이브를 해제하고 개발을 재개했습니다. 최신 태그 릴리스는 v0.35.0이며 main에는 추가 미출시 변경이 포함되어 있습니다. 이 페이지는 main을 설명하므로 일부 기능과 콘솔 화면은 최신 릴리스와 다를 수 있습니다.',
+    body: 'TARS의 아카이브를 해제하고 개발을 재개했습니다. 최신 태그 릴리스는 v0.42.2이며 main에는 아직 릴리스되지 않은 변경이 있을 수 있습니다. 이 페이지는 main을 설명하므로 일부 기능과 콘솔 화면은 최신 릴리스와 다를 수 있습니다.',
     cta: { label: '최신 릴리스 →', href: 'https://github.com/devlikebear/tars/releases' }
   },
 
@@ -562,7 +569,8 @@ export const ko: Translation = {
         'Chrome / Edge / Brave / Arc: 주소창 설치 버튼',
         'Safari 14+: 파일 → Dock에 추가',
         'Dock 아이콘 우클릭: Chat / Sessions / Ops / Pulse / Reflection 바로가기',
-        '상단 status pill: 서버 · pulse · reflection · 활성 세션을 한눈에'
+        '상단 status pill: 서버 · pulse · reflection · 활성 세션을 한눈에',
+        '트레이·승인 알림이 있는 macOS 네이티브 앱: brew install --cask devlikebear/tap/tars-desktop'
       ],
       cta: { label: '설치 가이드 →', href: 'https://github.com/devlikebear/tars/blob/main/docs/console-install.md' }
     }
@@ -727,6 +735,12 @@ export const ko: Translation = {
         code: 'brew tap devlikebear/tap\nbrew install devlikebear/tap/tars'
       },
       {
+        id: 'desktop',
+        label: '데스크톱 앱 (macOS)',
+        note: '서명·공증된 TARS.app(트레이, 승인 알림, 별도 창)과 서버를 명령 한 줄로 설치합니다. TARS를 열고 트레이에서 Start server를 누르면 첫 실행에 서비스를 설치하고 설정 마법사를 열어 주므로 02·03단계가 필요 없습니다.',
+        code: 'brew install --cask devlikebear/tap/tars-desktop'
+      },
+      {
         id: 'curl',
         label: 'curl',
         note: 'Linux / macOS 한 줄 — 콘솔이 포함된 사전 빌드 바이너리',
@@ -779,6 +793,6 @@ export const ko: Translation = {
         { label: 'insights.marvin-42.com', href: 'https://insights.marvin-42.com' }
       ]
     },
-    legal: '개발 재개 · 최신 릴리스 v0.35.0 · MIT 라이선스 · TARS는 영화 <em>인터스텔라</em>의 TARS에 대한 오마주이며, 영화와 무관합니다.'
+    legal: '개발 재개 · 최신 릴리스 v0.42.2 · MIT 라이선스 · TARS는 영화 <em>인터스텔라</em>의 TARS에 대한 오마주이며, 영화와 무관합니다.'
   }
 };
