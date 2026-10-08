@@ -4,6 +4,18 @@
 
   let active = $state(0);
   const current = $derived(t.screenshots.shots[active]);
+
+  // Play only when the visitor hasn't asked for reduced motion; an
+  // unplayed <video> just shows its poster frame, so reduced motion needs
+  // no separate static-image fallback markup. The `autoplay` attribute
+  // only takes effect while the browser first parses the element, so a
+  // state flip after mount wouldn't start playback — call .play() instead.
+  let videoEl: HTMLVideoElement | undefined;
+  $effect(() => {
+    if (videoEl && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      void videoEl.play().catch(() => {});
+    }
+  });
 </script>
 
 <section id="screenshots" class="border-b border-[var(--color-border-subtle)]">
@@ -47,14 +59,14 @@
         <div class="overflow-x-auto rounded-lg border border-[var(--color-border-subtle)]">
           <div
             class="relative w-full min-w-[44rem] overflow-hidden bg-[var(--color-surface-inset)]"
-            style="aspect-ratio: 2160 / 1350"
+            style="aspect-ratio: 1400 / 900"
           >
             {#each t.screenshots.shots as shot, i}
               <img
                 src={shot.src}
                 alt={shot.alt}
-                width="2160"
-                height="1350"
+                width="1400"
+                height="900"
                 loading={i === 0 ? 'eager' : 'lazy'}
                 decoding="async"
                 class="absolute inset-0 h-full w-full object-cover transition-opacity duration-200
@@ -70,5 +82,28 @@
     </div>
 
     <p class="mt-8 text-sm text-[var(--color-text-tertiary)]">{t.screenshots.note}</p>
+
+    <figure class="m-0 mt-10">
+      <div class="overflow-x-auto rounded-lg border border-[var(--color-border-subtle)]">
+        <div class="relative w-full min-w-[44rem] overflow-hidden bg-[var(--color-surface-inset)]" style="aspect-ratio: 1280 / 822">
+          <!-- svelte-ignore a11y_media_has_caption -->
+          <video
+            bind:this={videoEl}
+            class="absolute inset-0 h-full w-full object-cover"
+            poster={t.screenshots.clip.poster}
+            muted
+            loop
+            playsinline
+            preload="metadata"
+          >
+            <source src={t.screenshots.clip.webm} type="video/webm" />
+            <source src={t.screenshots.clip.src} type="video/mp4" />
+          </video>
+        </div>
+      </div>
+      <figcaption class="mt-4 max-w-3xl text-sm leading-relaxed text-[var(--color-text-secondary)]">
+        {t.screenshots.clip.caption}
+      </figcaption>
+    </figure>
   </div>
 </section>

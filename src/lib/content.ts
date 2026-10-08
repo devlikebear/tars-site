@@ -26,8 +26,15 @@ export type Shot = {
   caption: string;
 };
 
+export type Clip = {
+  src: string;
+  webm: string;
+  poster: string;
+  caption: string;
+};
+
 export type InstallMethod = {
-  id: 'brew' | 'desktop' | 'curl' | 'source';
+  id: 'brew' | 'desktop' | 'curl' | 'winget' | 'source';
   label: string;
   note: string;
   code: string;
@@ -92,6 +99,7 @@ export type Translation = {
     sub: string;
     note: string;
     shots: Shot[];
+    clip: Clip;
   };
 
   features: {
@@ -159,7 +167,7 @@ export const en: Translation = {
   archive: {
     label: 'development resumed',
     title: 'TARS development has resumed',
-    body: 'TARS is no longer archived and development has resumed. v0.42.2 is the latest tagged release; main may include additional unreleased changes. This page describes main, so some features and console screens may differ from the latest release.',
+    body: 'TARS is no longer archived and development has resumed. v0.57.0 is the latest tagged release; main may include additional unreleased changes. This page describes main, so some features and console screens may differ from the latest release.',
     cta: { label: 'Latest release →', href: 'https://github.com/devlikebear/tars/releases' }
   },
 
@@ -190,14 +198,21 @@ export const en: Translation = {
     label: '// the console',
     heading: 'Where you watch\nthe agent work',
     sub: 'Many local agent tools end at a CLI. TARS uses the browser console as its main interface. Open <code class="font-mono text-[var(--color-amber-soft)]">127.0.0.1:43180/console</code> and you get screens that actually let you inspect and control the agent — not just status pages.',
-    plus: 'The nav is deliberately this short. Recent changes on main trimmed the sidebar to the pages a single operator opens daily; Lineage, Plans, Memory, System Prompt, Extensions, Agent Runtime, Channels, Cron, Analytics, and Reflection keep their routes and still open by URL — they are just no longer advertised.',
+    plus: 'The nav is deliberately this short: Work, Build, and System. Only Plans and Channels stay off it, reachable through the ⌘K command palette and in-context links instead — everything else above is one click away.',
     pages: [
       {
         group: 'Home',
         groupLabel: '/home',
-        name: 'Mission Control',
+        name: 'Sessions',
         path: '/console',
-        body: 'The screen you land on. Pulse, Reflection, active plans, runtime runs, cron jobs, disk pressure, sessions, and recommended setup actions on one page — agent state and work in progress at a glance.'
+        body: 'The screen you land on. Every chat, grouped by the repository or folder it works in, with live Needs input / Running / Done / Idle status per card — what used to be a single dashboard is now a board of the work itself.'
+      },
+      {
+        group: 'Work',
+        groupLabel: '/work',
+        name: 'Focus',
+        path: '/console/focus',
+        body: 'Goal-driven pipelines: plan → build → review → PR → PR review → merge, or a different template. Gates wait for your decision unless the task is in goal mode, which runs to the end on a fixed policy with nobody watching.'
       },
       {
         group: 'Work',
@@ -209,23 +224,16 @@ export const en: Translation = {
       {
         group: 'Operate',
         groupLabel: '/operate',
+        name: 'Overview',
+        path: '/console/system',
+        body: 'Mission Control moved here once the session board took the landing spot. Pulse, Reflection, disk pressure, recent notifications, recommended setup actions, and delivery shortcuts (version, open PRs) in one place.'
+      },
+      {
+        group: 'Operate',
+        groupLabel: '/operate',
         name: 'Approvals',
         path: '/console/approvals',
-        body: 'Risky cleanup plans wait here for your review before TARS applies them — file paths, size, and reason first, then Approve or Reject. Applied plans keep a result log, and the page also carries the sanitized Remote Execution view.'
-      },
-      {
-        group: 'Operate',
-        groupLabel: '/operate',
-        name: 'Logs',
-        path: '/console/logs',
-        body: 'Tail the runtime log without leaving the browser. Pick the file, filter by level and component, choose how many lines, and expand any line to its raw JSON.'
-      },
-      {
-        group: 'Operate',
-        groupLabel: '/operate',
-        name: 'Pulse',
-        path: '/console/pulse',
-        body: 'The watchdog surface. Cron failures, stuck runs, disk pressure, Telegram delivery, and reflection health are checked every 60s; an LLM classifier sorts each tick into ignore / notify / autofix, and only whitelisted autofixes may act.'
+        body: 'Cleanup plans and queued unattended tool-call approvals wait here for review before TARS applies them — file paths, size, and reason first, then Approve or Reject. The automation audit below records every automated decision.'
       },
       {
         group: 'Setup',
@@ -253,44 +261,53 @@ export const en: Translation = {
   screenshots: {
     label: '// screenshots',
     heading: 'The console,\nas it actually ships',
-    sub: 'Captured from a running <code class="font-mono text-[var(--color-amber-soft)]">tars serve</code>, built from an August 2026 snapshot of main — the five screens the sidebar leads to, in the order it lists them.',
-    note: 'Real screens from a local install, not mockups. The workspace is a throwaway one, so the numbers are small — an everyday workspace fills these pages out.',
+    sub: 'Captured from a running <code class="font-mono text-[var(--color-amber-soft)]">tars serve</code>, built from a v0.57.0-era snapshot of main — six screens, in the order the sidebar lists them.',
+    note: 'Real screens from a local install, not mockups, driven by a scripted demo against a deterministic mock model — so the numbers are small and the conversation text is a fixture, not a real model talking.',
     shots: [
+      {
+        id: 'board',
+        name: 'Sessions',
+        path: '/console',
+        src: '/screens/console-board.webp',
+        alt: 'TARS console session board: sessions grouped by the folder they work in, with live status filters',
+        caption:
+          'The landing page. Every chat, grouped by the repository or folder it works in, with Needs input / Running / Done / Idle filters and live status per card.'
+      },
+      {
+        id: 'focus',
+        name: 'Focus',
+        path: '/console/focus',
+        src: '/screens/console-focus.webp',
+        alt: "TARS console Focus page: a pipeline's stage stepper (Plan, Build, Review done, PR active) and its latest report card",
+        caption:
+          'A goal-driven pipeline mid-run: the stage stepper across the top, the latest card from the deck, and a box to steer the current stage.'
+      },
       {
         id: 'chat',
         name: 'Chat',
         path: '/console/chat',
         src: '/screens/console-chat.webp',
-        alt: 'TARS console Chat page: session list on the left, a two-turn conversation in the middle, dockable panel tabs across the top',
+        alt: 'TARS console Chat page: session list on the left, a short exchange with a write_file tool call in the middle, the Files panel on the right',
         caption:
-          'A session mid-conversation. Panel tabs across the top dock Sessions, Files, Git, Tasks, Health and the rest beside the transcript; the header carries session health and the active working directory.'
+          'A session mid-conversation. Panel tabs across the top dock Sessions, Files, Git, Tasks, Health and the rest beside the transcript; tool calls render as inline cards, and the header carries session health and the active working directory.'
+      },
+      {
+        id: 'overview',
+        name: 'Overview',
+        path: '/console/system',
+        src: '/screens/console-overview.webp',
+        alt: 'TARS console Overview ("Mission Control") page: Pulse/Reflection/disk/session status strip, recent notifications, recommended actions, and delivery',
+        caption:
+          'The status strip, recent notifications, recommended setup actions, and current version/PR shortcuts — what used to live at /console before the session board took over as the landing page.'
       },
       {
         id: 'approvals',
         name: 'Approvals',
         path: '/console/approvals',
         src: '/screens/console-approvals.webp',
-        alt: 'TARS console Approvals page showing the review queue, what triggers an approval, and the Remote Execution panel',
+        alt: 'TARS console Approvals page showing the review queue, what triggers an approval, and the automation audit',
         caption:
-          'The review queue, with what puts something in it and what each decision does. Remote execution sits on the same page, reporting disabled because it is off by default.'
-      },
-      {
-        id: 'logs',
-        name: 'Logs',
-        path: '/console/logs',
-        src: '/screens/console-logs.webp',
-        alt: 'TARS console Logs page tailing the runtime log filtered to INFO level',
-        caption:
-          'The runtime log, filtered to INFO here. File, level, component and line count are all filters; any line expands to the raw JSON record behind it.'
-      },
-      {
-        id: 'pulse',
-        name: 'Pulse',
-        path: '/console/pulse',
-        src: '/screens/console-pulse.webp',
-        alt: 'TARS console Pulse page listing watch targets, the ignore/notify/autofix actions, and current watchdog status',
-        caption:
-          'What the watchdog watches, and what it is allowed to do about it. The tick counters below are live: this run classified a disk-pressure signal as notify rather than autofix.'
+          'Cleanup plans and queued unattended tool-call approvals wait here for review before TARS applies them; the automation audit below records every automated decision.'
       },
       {
         id: 'settings',
@@ -301,7 +318,13 @@ export const en: Translation = {
         caption:
           'Quick Start, and only Quick Start. Each card is one gate between you and a working install, with a readiness badge and a note when the change needs a restart.'
       }
-    ]
+    ],
+    clip: {
+      src: '/screens/demo.mp4',
+      webm: '/screens/demo.webm',
+      poster: '/screens/demo-poster.jpg',
+      caption: 'A short walkthrough of the same console — the session board, a chat exchange with a tool call, and a Focus pipeline — captured by the same scripted demo as the screenshots above.'
+    }
   },
 
   features: {
@@ -313,6 +336,16 @@ export const en: Translation = {
         tag: 'agent_runtime',
         title: 'Sub-Agent Orchestration',
         body: 'Spawn read-only sub-agents for research and planning. Per-task model tier routing, allowlist policy, depth control. Parallel and compare modes.'
+      },
+      {
+        tag: 'focus',
+        title: 'Focus Mode',
+        body: 'Run one task as a staged pipeline — plan, build, review, PR, merge, or a different template — with gate approvals, or goal mode for nobody at the gates. Stage transitions are decided by facts: a verification exit code, finding triage, real CI/review state.'
+      },
+      {
+        tag: 'worktrees',
+        title: 'Session Worktrees & Permissions',
+        body: 'A session working the same repo as another is isolated into its own git worktree automatically. Each session has a permission mode (ask / accept edits / plan / auto); cron, Telegram, and subagent turns ask the same way and queue in Ops when nobody is watching.'
       },
       {
         tag: 'memory',
@@ -421,6 +454,12 @@ export const en: Translation = {
         code: 'curl -fsSL https://raw.githubusercontent.com/devlikebear/tars/main/install.sh | sh'
       },
       {
+        id: 'winget',
+        label: 'Windows (winget)',
+        note: 'Portable package: tars.exe plus console assets, no separate archive or PATH edit. A winget install is upgraded only by winget.',
+        code: 'winget install Devlikebear.TARS\nwinget install Devlikebear.TARS.Desktop   # depends on the server'
+      },
+      {
         id: 'source',
         label: 'From source',
         note: 'For development. Requires Go 1.25.6+ (Node only for the console build)',
@@ -467,7 +506,7 @@ export const en: Translation = {
         { label: 'insights.marvin-42.com', href: 'https://insights.marvin-42.com' }
       ]
     },
-    legal: 'Development resumed · Latest release v0.42.2 · MIT License · An homage to TARS from <em>Interstellar</em>; not affiliated with the film.'
+    legal: 'Development resumed · Latest release v0.57.0 · MIT License · An homage to TARS from <em>Interstellar</em>; not affiliated with the film.'
   }
 };
 
@@ -484,7 +523,7 @@ export const ko: Translation = {
   archive: {
     label: 'development resumed',
     title: 'TARS 개발을 재개했습니다',
-    body: 'TARS의 아카이브를 해제하고 개발을 재개했습니다. 최신 태그 릴리스는 v0.42.2이며 main에는 아직 릴리스되지 않은 변경이 있을 수 있습니다. 이 페이지는 main을 설명하므로 일부 기능과 콘솔 화면은 최신 릴리스와 다를 수 있습니다.',
+    body: 'TARS의 아카이브를 해제하고 개발을 재개했습니다. 최신 태그 릴리스는 v0.57.0이며 main에는 아직 릴리스되지 않은 변경이 있을 수 있습니다. 이 페이지는 main을 설명하므로 일부 기능과 콘솔 화면은 최신 릴리스와 다를 수 있습니다.',
     cta: { label: '최신 릴리스 →', href: 'https://github.com/devlikebear/tars/releases' }
   },
 
@@ -516,14 +555,21 @@ export const ko: Translation = {
     label: '// 콘솔',
     heading: '에이전트가 일하는 과정을\n직접 확인하는 공간',
     sub: '많은 로컬 에이전트 도구는 CLI 하나로 끝납니다. TARS는 브라우저 콘솔을 중심 인터페이스로 사용합니다. <code class="font-mono text-[var(--color-amber-soft)]">127.0.0.1:43180/console</code>을 열면, 단순한 상태 페이지가 아니라 실제로 에이전트를 확인하고 제어할 수 있는 화면을 만나게 됩니다.',
-    plus: '내비게이션이 짧은 것은 의도된 결과입니다. main에 반영된 변경에서 사이드바는 한 사람이 매일 여는 화면만 남기고 정리했고, Lineage · Plans · Memory · System Prompt · Extensions · Agent Runtime · Channels · Cron · Analytics · Reflection은 라우트가 그대로 살아 있어 URL로는 여전히 열립니다 — 목록에 노출하지 않을 뿐입니다.',
+    plus: '내비게이션이 짧은 것은 의도된 결과입니다: Work · Build · System 세 그룹뿐입니다. 목록에서 빠진 것은 Plans와 Channels뿐이며, ⌘K 커맨드 팔레트와 화면 안 링크로 열 수 있습니다 — 그 외에는 모두 한 번만 클릭하면 열립니다.',
     pages: [
       {
         group: 'Home',
         groupLabel: '/home',
-        name: 'Mission Control',
+        name: 'Sessions',
         path: '/console',
-        body: '콘솔을 열면 처음 만나는 화면. Pulse, Reflection, 진행 중인 플랜, 런타임 실행, Cron 작업, 디스크 상태, 세션, 권장 설정 작업이 한 페이지에 모여 에이전트 상태와 진행 중인 일을 한눈에 보여줍니다.'
+        body: '콘솔을 열면 처음 만나는 화면. 모든 채팅이 작업 중인 저장소·폴더별로 묶이고, 카드마다 Needs input / Running / Done / Idle 상태가 실시간으로 표시됩니다 — 예전의 단일 대시보드가 지금은 작업 자체를 보여주는 보드가 됐습니다.'
+      },
+      {
+        group: 'Work',
+        groupLabel: '/work',
+        name: 'Focus',
+        path: '/console/focus',
+        body: '목표 중심 파이프라인: plan → build → review → PR → PR review → merge, 또는 다른 템플릿. 게이트는 기본적으로 사용자의 결정을 기다리지만, 목표 모드에서는 아무도 지켜보지 않아도 고정된 정책으로 끝까지 진행됩니다.'
       },
       {
         group: 'Work',
@@ -535,23 +581,16 @@ export const ko: Translation = {
       {
         group: 'Operate',
         groupLabel: '/operate',
+        name: 'Overview',
+        path: '/console/system',
+        body: '세션 보드가 랜딩 화면 자리를 넘겨받으면서 Mission Control이 옮겨온 곳. Pulse, Reflection, 디스크 압력, 최근 알림, 권장 설정 작업, 배포 바로가기(버전, 열린 PR)가 한 페이지에 모여 있습니다.'
+      },
+      {
+        group: 'Operate',
+        groupLabel: '/operate',
         name: 'Approvals',
         path: '/console/approvals',
-        body: '위험한 정리 작업이 적용되기 전에 대기하는 곳. 파일 경로와 크기, 이유를 먼저 보여주고 승인/거부를 사용자가 정합니다. 적용된 계획은 결과 로그로 남고, 같은 페이지에서 원격 실행 상태도 확인할 수 있습니다.'
-      },
-      {
-        group: 'Operate',
-        groupLabel: '/operate',
-        name: 'Logs',
-        path: '/console/logs',
-        body: '브라우저를 벗어나지 않고 런타임 로그를 확인. 파일, 레벨, 컴포넌트, 줄 수로 필터링하고, 각 줄을 펼치면 원본 JSON 레코드를 그대로 볼 수 있습니다.'
-      },
-      {
-        group: 'Operate',
-        groupLabel: '/operate',
-        name: 'Pulse',
-        path: '/console/pulse',
-        body: '감시 루프 화면. 60초마다 Cron 실패, 멈춘 실행, 디스크 압력, Telegram 전송, Reflection 상태를 점검하고, LLM 분류기가 각 틱을 ignore / notify / autofix로 나눕니다. autofix는 허용 목록에 있는 것만 실행됩니다.'
+        body: '정리 작업과, 무인 실행이 큐에 올린 도구 호출 승인이 적용되기 전에 대기하는 곳. 파일 경로와 크기, 이유를 먼저 보여주고 승인/거부를 사용자가 정합니다. 아래 automation audit에는 자동화된 결정이 모두 기록됩니다.'
       },
       {
         group: 'Setup',
@@ -579,44 +618,53 @@ export const ko: Translation = {
   screenshots: {
     label: '// 스크린샷',
     heading: '실제로 배포된\n콘솔 화면',
-    sub: '2026년 8월의 main 스냅숏을 <code class="font-mono text-[var(--color-amber-soft)]">tars serve</code>로 직접 띄워 캡처했습니다 — 사이드바가 안내하는 다섯 화면을, 사이드바에 놓인 순서 그대로.',
-    note: '목업이 아니라 로컬 설치본의 실제 화면입니다. 캡처용으로 새로 만든 워크스페이스라 숫자가 작을 뿐, 실제로 쓰는 워크스페이스에서는 이 화면들이 훨씬 빽빽하게 채워집니다.',
+    sub: 'v0.57.0 시점의 main 스냅숏을 <code class="font-mono text-[var(--color-amber-soft)]">tars serve</code>로 직접 띄워 캡처했습니다 — 사이드바가 안내하는 순서 그대로 여섯 화면.',
+    note: '목업이 아니라 로컬 설치본의 실제 화면이며, 결정적으로 동작하는 모의(mock) 모델을 상대로 한 스크립트 데모를 캡처했습니다 — 숫자가 작은 것도, 대화 내용이 고정된 문구인 것도 그래서입니다(실제 모델의 답변이 아닙니다).',
     shots: [
+      {
+        id: 'board',
+        name: 'Sessions',
+        path: '/console',
+        src: '/screens/console-board.webp',
+        alt: 'TARS 콘솔 세션 보드: 작업 중인 폴더별로 묶인 세션과 실시간 상태 필터',
+        caption:
+          '콘솔을 열면 처음 만나는 화면. 모든 채팅이 작업 중인 저장소·폴더별로 묶이고, 카드마다 Needs input / Running / Done / Idle 필터와 실시간 상태가 표시됩니다.'
+      },
+      {
+        id: 'focus',
+        name: 'Focus',
+        path: '/console/focus',
+        src: '/screens/console-focus.webp',
+        alt: 'TARS 콘솔 Focus 화면: 파이프라인 단계 스테퍼(Plan, Build, Review 완료, PR 진행 중)와 최신 리포트 카드',
+        caption:
+          '목표 중심 파이프라인이 진행되는 모습. 위쪽의 단계 스테퍼, 덱의 최신 카드, 그리고 현재 단계에 지시를 보낼 수 있는 입력창이 함께 있습니다.'
+      },
       {
         id: 'chat',
         name: 'Chat',
         path: '/console/chat',
         src: '/screens/console-chat.webp',
-        alt: 'TARS 콘솔 Chat 화면: 왼쪽 세션 목록, 가운데 두 번의 대화, 위쪽 패널 탭',
+        alt: 'TARS 콘솔 Chat 화면: 왼쪽 세션 목록, 가운데 write_file 도구 호출이 있는 짧은 대화, 오른쪽 Files 패널',
         caption:
-          '대화가 진행 중인 세션. 위쪽 탭으로 Sessions, Files, Git, Tasks, Health 같은 패널을 대화 옆에 붙일 수 있고, 헤더에는 세션 상태와 현재 작업 디렉터리가 함께 표시됩니다.'
+          '대화가 진행 중인 세션. 위쪽 탭으로 Sessions, Files, Git, Tasks, Health 같은 패널을 대화 옆에 붙일 수 있고, 도구 호출은 인라인 카드로 표시되며, 헤더에는 세션 상태와 현재 작업 디렉터리가 함께 나타납니다.'
+      },
+      {
+        id: 'overview',
+        name: 'Overview',
+        path: '/console/system',
+        src: '/screens/console-overview.webp',
+        alt: 'TARS 콘솔 Overview("Mission Control") 화면: Pulse/Reflection/디스크/세션 상태 스트립, 최근 알림, 권장 작업, 배포 정보',
+        caption:
+          '상태 스트립, 최근 알림, 권장 설정 작업, 현재 버전·PR 바로가기를 한 곳에 모았습니다 — 세션 보드가 랜딩 화면이 되기 전에는 /console에 있던 화면입니다.'
       },
       {
         id: 'approvals',
         name: 'Approvals',
         path: '/console/approvals',
         src: '/screens/console-approvals.webp',
-        alt: 'TARS 콘솔 Approvals 화면: 검토 대기열, 승인이 필요한 조건, 원격 실행 패널',
+        alt: 'TARS 콘솔 Approvals 화면: 검토 대기열, 승인이 필요한 조건, automation audit',
         caption:
-          '검토 대기열과 함께, 무엇이 여기로 올라오고 각 결정이 무슨 일을 하는지 나란히 설명합니다. 원격 실행도 같은 페이지에 있으며 기본값이 꺼짐이라 disabled로 표시됩니다.'
-      },
-      {
-        id: 'logs',
-        name: 'Logs',
-        path: '/console/logs',
-        src: '/screens/console-logs.webp',
-        alt: 'TARS 콘솔 Logs 화면: INFO 레벨로 필터링된 런타임 로그',
-        caption:
-          '런타임 로그를 INFO로 필터링한 모습. 파일 · 레벨 · 컴포넌트 · 줄 수가 모두 필터이고, 각 줄을 펼치면 원본 JSON 레코드가 나옵니다.'
-      },
-      {
-        id: 'pulse',
-        name: 'Pulse',
-        path: '/console/pulse',
-        src: '/screens/console-pulse.webp',
-        alt: 'TARS 콘솔 Pulse 화면: 감시 대상, ignore/notify/autofix 동작, 현재 감시 상태',
-        caption:
-          '감시 루프가 무엇을 보고, 그에 대해 무엇까지 할 수 있는지. 아래 카운터는 실제 값으로, 이 실행에서는 디스크 압력 신호를 autofix가 아닌 notify로 분류했습니다.'
+          '정리 작업과, 무인 실행이 큐에 올린 도구 호출 승인이 TARS가 적용하기 전에 대기하는 곳입니다. 아래 automation audit에는 자동화된 결정이 모두 기록됩니다.'
       },
       {
         id: 'settings',
@@ -627,7 +675,13 @@ export const ko: Translation = {
         caption:
           'Quick Start, 그리고 Quick Start만. 카드 하나가 곧 동작하는 설치까지 남은 관문 하나이며, 준비 상태 배지와 재시작이 필요한지 여부가 함께 표시됩니다.'
       }
-    ]
+    ],
+    clip: {
+      src: '/screens/demo.mp4',
+      webm: '/screens/demo.webm',
+      poster: '/screens/demo-poster.jpg',
+      caption: '같은 콘솔을 짧게 둘러보는 영상입니다 — 세션 보드, 도구 호출이 있는 채팅, Focus 파이프라인까지, 위 스크린샷과 같은 스크립트 데모로 캡처했습니다.'
+    }
   },
 
   features: {
@@ -639,6 +693,16 @@ export const ko: Translation = {
         tag: 'agent_runtime',
         title: '서브에이전트 오케스트레이션',
         body: '리서치/플래닝용 읽기 전용 서브에이전트 실행. 작업별 모델 티어 라우팅, 허용 정책, 깊이 제어. 병렬 실행과 비교 모드.'
+      },
+      {
+        tag: 'focus',
+        title: 'Focus 모드',
+        body: '하나의 작업을 plan → build → review → PR → merge, 혹은 다른 템플릿으로 단계화된 파이프라인으로 실행합니다. 게이트는 기본적으로 승인을 기다리고, 목표 모드에서는 아무도 지켜보지 않아도 됩니다. 단계 전환은 검증 명령의 종료 코드, 지적 사항 분류, 실제 CI·리뷰 상태 같은 사실로만 결정됩니다.'
+      },
+      {
+        tag: 'worktrees',
+        title: '세션 Worktree와 권한',
+        body: '같은 저장소를 다루는 다른 세션이 있으면 자동으로 별도 git worktree로 격리됩니다. 세션마다 권한 모드(ask / accept edits / plan / auto)가 있고, cron·Telegram·서브에이전트 턴도 같은 방식으로 승인을 묻고 아무도 보고 있지 않으면 Ops에 큐로 쌓입니다.'
       },
       {
         tag: 'memory',
@@ -747,6 +811,12 @@ export const ko: Translation = {
         code: 'curl -fsSL https://raw.githubusercontent.com/devlikebear/tars/main/install.sh | sh'
       },
       {
+        id: 'winget',
+        label: 'Windows (winget)',
+        note: 'tars.exe와 콘솔 자산을 담은 포터블 패키지 — 별도 압축 해제나 PATH 설정이 필요 없습니다. winget으로 설치했다면 업데이트도 winget으로만 합니다.',
+        code: 'winget install Devlikebear.TARS\nwinget install Devlikebear.TARS.Desktop   # 서버에 의존'
+      },
+      {
         id: 'source',
         label: '소스에서',
         note: '개발용. Go 1.25.6+ 필요 (Node는 콘솔 빌드에만)',
@@ -793,6 +863,6 @@ export const ko: Translation = {
         { label: 'insights.marvin-42.com', href: 'https://insights.marvin-42.com' }
       ]
     },
-    legal: '개발 재개 · 최신 릴리스 v0.42.2 · MIT 라이선스 · TARS는 영화 <em>인터스텔라</em>의 TARS에 대한 오마주이며, 영화와 무관합니다.'
+    legal: '개발 재개 · 최신 릴리스 v0.57.0 · MIT 라이선스 · TARS는 영화 <em>인터스텔라</em>의 TARS에 대한 오마주이며, 영화와 무관합니다.'
   }
 };
