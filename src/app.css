@@ -45,7 +45,12 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
-    scroll-behavior: smooth;
+    /* Not smooth: WebKit's CSS-driven smooth scroll can stall or fight
+       with a programmatic/accessibility-driven scroll (keyboard nav,
+       assistive tech, browser automation), leaving the page stuck instead
+       of jumping to the anchor. An instant jump is also what
+       prefers-reduced-motion users want anyway. */
+    scroll-behavior: auto;
   }
 
   body {
