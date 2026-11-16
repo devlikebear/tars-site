@@ -102,6 +102,16 @@ export type Translation = {
     clip: Clip;
   };
 
+  mobile: {
+    label: string;
+    heading: string;
+    sub: string;
+    bullets: string[];
+    cta: { label: string; href: string };
+    note: string;
+    shots: Array<{ src: string; alt: string }>;
+  };
+
   features: {
     label: string;
     heading: string;
@@ -325,6 +335,25 @@ export const en: Translation = {
       poster: '/screens/demo-poster.jpg',
       caption: 'A short walkthrough of the same console — the session board, a chat exchange with a tool call, and a Focus pipeline — captured by the same scripted demo as the screenshots above.'
     }
+  },
+
+  mobile: {
+    label: '// on your phone',
+    heading: 'Answer your agent\nfrom your iPhone',
+    sub: 'A focus pipeline stops at each gate until you answer. TARS Remote brings those questions to your phone, so the work keeps moving while you are away from the desk.',
+    bullets: [
+      'One Waiting list across all your desktops: plans to approve, review findings to decide, pull requests to merge, tool calls waiting for permission.',
+      'Write an idea down any time. It stays on the phone until you send it to a desktop as a task.',
+      'It reaches only desktops you pair, over your own Tailscale network. No account, no relay server, nothing collected.',
+      'No desktop set up yet? The built-in demo desk walks through sample tasks inside the app.'
+    ],
+    cta: { label: 'TARS Remote on the App Store →', href: 'https://apps.apple.com/app/id6835098160' },
+    note: 'Free. Needs TARS 0.69.0 or later on the desktop, and Tailscale on the desktop and the phone.',
+    shots: [
+      { src: '/screens/mobile-waiting.webp', alt: 'TARS Remote: the Waiting list with three tasks and a tool call to approve' },
+      { src: '/screens/mobile-finding.webp', alt: 'TARS Remote: a review finding with its diff and Fix, Dismiss and Ask buttons' },
+      { src: '/screens/mobile-merge.webp', alt: 'TARS Remote: the merge gate with the pull request and its passing checks' }
+    ]
   },
 
   features: {
@@ -682,6 +711,25 @@ export const ko: Translation = {
       poster: '/screens/demo-poster.jpg',
       caption: '같은 콘솔을 짧게 둘러보는 영상입니다 — 세션 보드, 도구 호출이 있는 채팅, Focus 파이프라인까지, 위 스크린샷과 같은 스크립트 데모로 캡처했습니다.'
     }
+  },
+
+  mobile: {
+    label: '// 휴대폰에서',
+    heading: '에이전트의 질문에\n아이폰으로 답하기',
+    sub: '포커스 파이프라인은 게이트마다 사람의 답을 기다리며 멈춥니다. TARS 리모트가 그 질문을 휴대폰으로 가져오므로, 자리를 비운 동안에도 작업이 계속 나아갑니다.',
+    bullets: [
+      '모든 데스크톱의 대기 목록을 한곳에서: 승인할 계획, 결정할 리뷰 지적, 머지할 풀 리퀘스트, 권한을 기다리는 도구 호출.',
+      '아이디어는 언제든 적어 둡니다. 데스크톱에 작업으로 보내기 전까지는 휴대폰에만 남습니다.',
+      '직접 연결한 데스크톱하고만, 내 Tailscale 네트워크로 통신합니다. 계정도, 중계 서버도, 수집하는 데이터도 없습니다.',
+      '아직 데스크톱을 준비하지 않았다면 앱 안의 데모 데스크톱으로 예시 작업을 직접 진행해 볼 수 있습니다.'
+    ],
+    cta: { label: 'App Store에서 TARS Remote 받기 →', href: 'https://apps.apple.com/app/id6835098160' },
+    note: '무료. 데스크톱에 TARS 0.69.0 이상이, 데스크톱과 휴대폰 모두에 Tailscale이 필요합니다.',
+    shots: [
+      { src: '/screens/mobile-waiting.webp', alt: 'TARS 리모트: 작업 세 개와 승인할 도구 호출이 있는 대기 목록' },
+      { src: '/screens/mobile-finding.webp', alt: 'TARS 리모트: diff와 고치기·무시·질문 버튼이 있는 리뷰 지적 카드' },
+      { src: '/screens/mobile-merge.webp', alt: 'TARS 리모트: 풀 리퀘스트와 통과한 검사를 보여 주는 머지 게이트' }
+    ]
   },
 
   features: {
