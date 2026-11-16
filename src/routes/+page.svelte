@@ -5,6 +5,7 @@
   import Intro from '$lib/sections/Intro.svelte';
   import ConsoleShowcase from '$lib/sections/ConsoleShowcase.svelte';
   import Screenshots from '$lib/sections/Screenshots.svelte';
+  import Mobile from '$lib/sections/Mobile.svelte';
   import Features from '$lib/sections/Features.svelte';
   import Comparison from '$lib/sections/Comparison.svelte';
   import Architecture from '$lib/sections/Architecture.svelte';
@@ -31,6 +32,7 @@
   <Intro {t} />
   <ConsoleShowcase {t} />
   <Screenshots {t} />
+  <Mobile {t} />
   <Features {t} />
   <Comparison {t} />
   <Architecture {t} />
