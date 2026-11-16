@@ -177,7 +177,7 @@ export const en: Translation = {
   archive: {
     label: 'development resumed',
     title: 'TARS development has resumed',
-    body: 'TARS is no longer archived and development has resumed. v0.57.0 is the latest tagged release; main may include additional unreleased changes. This page describes main, so some features and console screens may differ from the latest release.',
+    body: 'TARS is no longer archived and development has resumed. v0.69.0 is the latest tagged release; main may include additional unreleased changes. This page describes main, so some features and console screens may differ from the latest release.',
     cta: { label: 'Latest release →', href: 'https://github.com/devlikebear/tars/releases' }
   },
 
@@ -535,7 +535,7 @@ export const en: Translation = {
         { label: 'insights.marvin-42.com', href: 'https://insights.marvin-42.com' }
       ]
     },
-    legal: 'Development resumed · Latest release v0.57.0 · MIT License · An homage to TARS from <em>Interstellar</em>; not affiliated with the film.'
+    legal: 'Development resumed · Latest release v0.69.0 · MIT License · An homage to TARS from <em>Interstellar</em>; not affiliated with the film.'
   }
 };
 
@@ -552,7 +552,7 @@ export const ko: Translation = {
   archive: {
     label: 'development resumed',
     title: 'TARS 개발을 재개했습니다',
-    body: 'TARS의 아카이브를 해제하고 개발을 재개했습니다. 최신 태그 릴리스는 v0.57.0이며 main에는 아직 릴리스되지 않은 변경이 있을 수 있습니다. 이 페이지는 main을 설명하므로 일부 기능과 콘솔 화면은 최신 릴리스와 다를 수 있습니다.',
+    body: 'TARS의 아카이브를 해제하고 개발을 재개했습니다. 최신 태그 릴리스는 v0.69.0이며 main에는 아직 릴리스되지 않은 변경이 있을 수 있습니다. 이 페이지는 main을 설명하므로 일부 기능과 콘솔 화면은 최신 릴리스와 다를 수 있습니다.',
     cta: { label: '최신 릴리스 →', href: 'https://github.com/devlikebear/tars/releases' }
   },
 
@@ -911,6 +911,6 @@ export const ko: Translation = {
         { label: 'insights.marvin-42.com', href: 'https://insights.marvin-42.com' }
       ]
     },
-    legal: '개발 재개 · 최신 릴리스 v0.57.0 · MIT 라이선스 · TARS는 영화 <em>인터스텔라</em>의 TARS에 대한 오마주이며, 영화와 무관합니다.'
+    legal: '개발 재개 · 최신 릴리스 v0.69.0 · MIT 라이선스 · TARS는 영화 <em>인터스텔라</em>의 TARS에 대한 오마주이며, 영화와 무관합니다.'
   }
 };
